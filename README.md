@@ -439,8 +439,16 @@ Waiting for another flutter command to release the startup lock...
 
     * 终端命令行运行：`flutter run`，会自检下载（如果没有的话）iOS tools
 
-    <font color="red">*点击控制台打印输出的：`http://127.0.0.1:9102?uri=http://127.0.0.1:62113/OttBUMZMg9g=/ `进入本机浏览器的Flutter.DevTools*</font>
+      ```shell
+       Flutter assets will be downloaded from https://storage.googleapis.com. Make sure you trust this source!
+       Downloading ios tools...
+       Downloading ios-profile tools...
+       Downloading ios-release tools...
+       Waiting for iPhone to connect...
+      ```
 
+    <font color="red">*点击控制台打印输出的：`http://127.0.0.1:9102?uri=http://127.0.0.1:62113/OttBUMZMg9g=/ `进入本机浏览器的Flutter.DevTools*</font>
+    
     ```shell
     ➜  flutter_getx-main flutter run                                          
     Launching lib/main.dart on iPhone Xs Max in debug mode...
@@ -464,11 +472,11 @@ Waiting for another flutter command to release the startup lock...
     The Flutter DevTools debugger and profiler on iPhone Xs Max is available at:
     http://127.0.0.1:9102?uri=http://127.0.0.1:62113/OttBUMZMg9g=/
     ```
-
+    
     *IDE.Start Debugging 运行* 。
-
+    
     <font color="red">*点击控制台打印输出的：`127.0.0.1:65127/fK9sb2YoaYk=/ws`进入本机浏览器的Flutter.DevTools*</font>
-
+    
     ```
     Launching lib/main.dart on iPhone Xs in debug mode...
     Xcode build done.                                           30.2s
@@ -489,7 +497,7 @@ Waiting for another flutter command to release the startup lock...
     [GETX] Instance "Controller" has been initialized
     flutter: 当前系统语言环境:[zh_CN]
     ```
-
+    
     ![image-20240512201712757](./assets/image-20240512201712757.png)
 
 * 编译器（[***VSCode***](https://code.visualstudio.com/) ）有3种方式运行
