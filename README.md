@@ -346,6 +346,8 @@ Waiting for another flutter command to release the startup lock...
 
 * 第一次运行会有编译器的自动配置，请耐心等待；
 
+* [有些时候Flutter的运行结果可能是上一个修改的，这个时候需要在项目根目录下运行：` flutter clean`](#flutter_clean)  
+
 * iPhone真机运行需要在xcode编译器里面配置证书。按照苹果的那一套规则，没有证书是无法真机运行的。
 
   * *Flutter代码运行到真机，可能打开时一片空白* **解决方案**👇🏻
@@ -654,10 +656,6 @@ Waiting for another flutter command to release the startup lock...
   * **包依赖问题**
   * **开发环境迁移**
   
-  ```dart
-  
-  ```
-  
   ***flutter devices*** 检查计算机上连接的所有设备。不一定需要在项目根目录执行
   
   ```shell
@@ -708,10 +706,22 @@ Waiting for another flutter command to release the startup lock...
   Reinstalled 336 packages.
   ```
   
-  ***flutter clean*** 用于清理 Flutter 项目中的构建缓存和临时文件
+  <font id="flutter_clean">***flutter clean***</font> 用于清理 Flutter 项目中的构建缓存和临时文件。有些时候，Flutter的运行结果可能是上一个修改的版本的（有缓存，需清理）
   
-  ```dart
-  
+  ```shell
+  ➜  JobsFlutterBaseConfigDemo git:(main) ✗ flutter clean
+  Cleaning Xcode workspace...                                      2,514ms
+  Cleaning Xcode workspace...                                      1,825ms
+  Deleting build...                                                   44ms
+  Deleting .dart_tool...                                               9ms
+  Deleting Generated.xcconfig...                                       0ms
+  Deleting flutter_export_environment.sh...                            0ms
+  Deleting Flutter.podspec...                                          0ms
+  Deleting ephemeral...                                                0ms
+  Deleting ephemeral...                                                0ms
+  Deleting ephemeral...                                                0ms
+  Deleting .flutter-plugins-dependencies...                            0ms
+  Deleting .flutter-plugins...                                         0ms
   ```
   
   ***flutter doctor -v*** 
