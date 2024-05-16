@@ -348,6 +348,25 @@ Waiting for another flutter command to release the startup lock...
 
 * iPhone真机运行需要在xcode编译器里面配置证书。按照苹果的那一套规则，没有证书是无法真机运行的。
 
+  * *Flutter代码运行到真机，可能打开时一片空白。可以尝试用release模式*
+
+    ```shell
+    ➜  JobsFlutterBaseConfigDemo git:(main) ✗ flutter run --release             
+    
+    Flutter assets will be downloaded from https://storage.googleapis.com. Make sure
+    you trust this source!
+    Downloading Web SDK...                                             12.6s
+    Downloading darwin-x64/framework tools...                           9.3s
+    Downloading darwin-x64/gen_snapshot tools...                     2,215ms
+    Downloading darwin-x64-profile/framework tools...                   5.7s
+    Downloading darwin-x64-profile tools...                          1,723ms
+    Downloading darwin-x64-profile/gen_snapshot tools...                6.1s
+    Downloading darwin-x64-release/framework tools...                   6.6s
+    Downloading darwin-x64-release tools...                          1,698ms
+    Downloading darwin-x64-release/gen_snapshot tools...             2,678ms
+    ...
+    ```
+
 * 入口文件默认是`main.dart`，但是也可以对入口文件进行修改，使之不为`main.dart`；（以下的讨论都针对默认配置）
 
   * 具体怎么配置？研讨中
