@@ -348,7 +348,9 @@ Waiting for another flutter command to release the startup lock...
 
 * iPhone真机运行需要在xcode编译器里面配置证书。按照苹果的那一套规则，没有证书是无法真机运行的。
 
-  * *Flutter代码运行到真机，可能打开时一片空白。可以尝试用release模式*
+  * *Flutter代码运行到真机，可能打开时一片空白* **解决方案**👇🏻
+
+    1、可以尝试用**release**模式
 
     ```shell
     ➜  JobsFlutterBaseConfigDemo git:(main) ✗ flutter run --release             
@@ -367,16 +369,69 @@ Waiting for another flutter command to release the startup lock...
     ...
     ```
 
+    2、[**可以通过`flutter devices`得到真机的设备id，来进行精确的安装运行**](#runByDeviceID)                    ⣾
+
 * 入口文件默认是`main.dart`，但是也可以对入口文件进行修改，使之不为`main.dart`；（以下的讨论都针对默认配置）
 
-  * 具体怎么配置？研讨中
+  * 具体怎么配置？研讨中...TODO...
 
-* `flutter run`命令会启动（记录）最近一次你的运行设备（缺省值无需设备选择）
+* <font size=7 color=red>**`flutter run`**</font>
 
-  * *手动运行指定的文件*
+  * 一般情况下，该命令会启动（记录）最近一次你的运行设备（缺省值无需设备选择）
+
+  * 会自检下载（如果没有的话）iOS tools
+
+    ```
+     Flutter assets will be downloaded from https://storage.googleapis.com. Make sure you trust this source!
+     Downloading ios tools...
+     Downloading ios-profile tools...
+     Downloading ios-release tools...
+     Waiting for iPhone to connect...
+    ```
+
+  * <font color=red>**手动运行指定的文件**</font>
 
     ```shell
     flutter run -t lib/main.dart
+    ```
+    
+  * <font color=red id="runByDeviceID">**手动运行（项目工程）到指定设备**</font>
+
+  *结合`flutter devices`查找出当前连接的所有设备（拿到设备id），再指定运行到此id关联的指定设备*
+
+    ```shell
+    ➜  JobsFlutterBaseConfigDemo git:(main) flutter devices
+    Found 3 connected devices:
+      macOS (desktop)                 • macos                 • darwin-arm64   • macOS 14.5 23F79 darwin-arm64
+      Mac Designed for iPad (desktop) • mac-designed-for-ipad • darwin         • macOS 14.5 23F79 darwin-arm64
+      Chrome (web)                    • chrome                • web-javascript • Google Chrome 124.0.6367.207
+    
+    Found 1 wirelessly connected device:
+      iPhone (mobile) • 00008110-000625583EE3801E • ios • iOS 17.5 21F79
+    
+    Run "flutter emulators" to list and start any available device emulators.
+    
+    If you expected another device to be detected, please run "flutter doctor" to diagnose potential issues. You
+    may also try increasing the time to wait for connected devices with the "--device-timeout" flag. Visit
+    https://flutter.dev/setup/ for troubleshooting tips.
+    ➜  JobsFlutterBaseConfigDemo git:(main) flutter run -d 00008110-000625583EE3801E
+    Launching lib/main.dart on iPhone in debug mode...
+    Automatically signing iOS for device deployment using specified development team in Xcode project:
+    K92UCMVH8G
+    Running Xcode build...                                                  
+     └─Compiling, linking and signing...                         3.5s
+    Xcode build done.                                           18.4s
+    You may be prompted to give access to control Xcode. Flutter uses Xcode to run your app. If access is not
+    allowed, you can change this through your Settings > Privacy & Security > Automation.
+    The Dart VM Service was not discovered after 75 seconds. This is taking much longer than expected...
+    Open the Xcode window the project is opened in to ensure the app is running. If the app is not running, try
+    selecting "Product > Run" to fix the problem.
+    
+    Click "Allow" to the prompt asking if you would like to find and connect devices on your local network. This
+    is required for wireless debugging. If you selected "Don't Allow", you can turn it on in Settings > Your App
+    Name > Local Network. If you don't see your app in the Settings, uninstall the app and rerun to see the
+    prompt again.
+    Installing and launching...    
     ```
 
 * 如果使用[***VSCode***](https://code.visualstudio.com/)编译器，IDE会自动侦测该文件内容；
@@ -385,7 +440,7 @@ Waiting for another flutter command to release the startup lock...
 
   * <font id="VSCode的运行按钮有3种菜单选项">[***VSCode***](https://code.visualstudio.com/)的运行按钮默认有3种菜单选项：**Run Code**/**Start Debugging**/**Run Without Debugging**</font>
 
-  * [***VSCode***](https://code.visualstudio.com/)除了上述3种默认的启动方式以外，还可以用户自定义启动方式：
+  * [***VSCode***](https://code.visualstudio.com/)除了上述3种默认的启动方式以外，还可以<font color=red>**用户自定义启动方式：**</font>
 
     * 编辑`tasks.json`
 
@@ -409,7 +464,7 @@ Waiting for another flutter command to release the startup lock...
     }
     ```
 
-    * 在[***VSCode***](https://code.visualstudio.com/)的扩展市场中搜索并安装扩展："Customize UI"、"Custom Tasks"（略）
+    * 在[***VSCode***](https://code.visualstudio.com/)的扩展市场中搜索并安装扩展："**Customize UI**"、"**Custom Tasks**"（略）
 
   * 如果`*.dart`文件里面不包含main函数，则只会有一个运行按钮
 
@@ -421,7 +476,7 @@ Waiting for another flutter command to release the startup lock...
 
 * 如果，当前激活的页面不是`*.dart`，那么只能使用MacOS终端命令行工具：运行`flutter run`。当然也可以直接终端进入工程根目录去运行`flutter run`
 
-  * MacOS终端命令行停止运行：`control + z`
+  * **MacOS终端命令行停止运行**：`control + z`
 
   * 如果是iOS平台，**此时会唤起xcode**，去打开Flutter.ios文件夹下的工程文件；
 
@@ -456,18 +511,8 @@ Waiting for another flutter command to release the startup lock...
       fi
       ```
 
-    * 终端命令行运行：`flutter run`，会自检下载（如果没有的话）iOS tools
-
-      ```shell
-       Flutter assets will be downloaded from https://storage.googleapis.com. Make sure you trust this source!
-       Downloading ios tools...
-       Downloading ios-profile tools...
-       Downloading ios-release tools...
-       Waiting for iPhone to connect...
-      ```
-
     <font color="red">*点击控制台打印输出的：`http://127.0.0.1:9102?uri=http://127.0.0.1:62113/OttBUMZMg9g=/ `进入本机浏览器的Flutter.DevTools*</font>
-    
+
     ```shell
     ➜  flutter_getx-main flutter run                                          
     Launching lib/main.dart on iPhone Xs Max in debug mode...
@@ -518,7 +563,7 @@ Waiting for another flutter command to release the startup lock...
     ```
     
     ![image-20240512201712757](./assets/image-20240512201712757.png)
-
+    
 * 编译器（[***VSCode***](https://code.visualstudio.com/) ）有3种方式运行
 
   * `run code`，真机和iOS模拟器均报错：<font color="red">***Error: Dart library 'dart:ui' is not available on this platform.***</font>
@@ -577,6 +622,11 @@ Waiting for another flutter command to release the startup lock...
   The Flutter DevTools debugger and profiler on iPhone Xs is available at: http://127.0.0.1:9101?uri=http://127.0.0.1:52561/ffKDHeQhRQA=/
   ```
 
+* 权限问题：**Flutter代码不配置设备权限**。配置权限需要进入特定的代码里面，按照设备所属的代码规范进行配置。比如：
+
+  * iOS进入`info.plist`里面进行配置
+  * Android通常只涉及两个主要文件：`AndroidManifest.xml` 和 `build.gradle`
+  
 * 其他：
   
   ***flutter pub get --no-example*** 是Flutter 包管理器 **pub** 的命令。用于获取项目所需的依赖包，**但不包括示例代码**
@@ -608,7 +658,33 @@ Waiting for another flutter command to release the startup lock...
   
   ```
   
-  ***flutter pub upgrade***（一定要定位📌于项目当前目录才可以运行）
+  ***flutter devices*** 检查计算机上连接的所有设备。不一定需要在项目根目录执行
+  
+  ```shell
+  ➜  Desktop flutter devices
+  Found 4 connected devices:
+    iPhone Xs (mobile)              • AC8757F7-D8BE-4792-B5A9-0AFAA1EDB343 • ios
+    • com.apple.CoreSimulator.SimRuntime.iOS-17-5 (simulator)
+    macOS (desktop)                 • macos                                •
+    darwin-arm64   • macOS 14.5 23F79 darwin-arm64
+    Mac Designed for iPad (desktop) • mac-designed-for-ipad                •
+    darwin         • macOS 14.5 23F79 darwin-arm64
+    Chrome (web)                    • chrome                               •
+    web-javascript • Google Chrome 124.0.6367.207
+  
+  Found 1 wirelessly connected device:
+    iPhone (mobile) • 00008110-000625583EE3801E • ios • iOS 17.5 21F79
+  
+  Run "flutter emulators" to list and start any available device emulators.
+  
+  If you expected another device to be detected, please run "flutter doctor" to
+  diagnose potential issues. You may also try increasing the time to wait for
+  connected devices with the "--device-timeout" flag. Visit
+  https://flutter.dev/setup/ for troubleshooting tips.
+  ➜  Desktop 
+  ```
+  
+  ***flutter pub upgrade***一定要定位📌于项目当前目录才可以运行
   
   ```shell
   ➜  jobs_flutter_base_config git:(main) ✗ flutter pub upgrade
@@ -622,13 +698,17 @@ Waiting for another flutter command to release the startup lock...
   Try `flutter pub outdated` for more information.
   ```
   
-  ***flutter pub cache repair***
+  ***flutter pub cache repair***  不一定需要在项目根目录执行
+  
+  * 用于修复Flutter的依赖项缓存。当使用Flutter项目时遇到依赖项缓存损坏或不一致时，可以运行这个命令来尝试修复问题
+  * 具体来说，这个命令会尝试修复Flutter的包管理器（通常是Pub）的本地缓存中的任何损坏或不一致之处。这可能包括删除损坏的缓存文件、重新下载缺失的依赖项等操作，以恢复缓存到一个可用的状态。
   
   ```dart
-  
+  ➜  Desktop flutter pub cache repair
+  Reinstalled 336 packages.
   ```
   
-  ***flutter clean***
+  ***flutter clean*** 用于清理 Flutter 项目中的构建缓存和临时文件
   
   ```dart
   
@@ -673,7 +753,7 @@ Waiting for another flutter command to release the startup lock...
   Downloading android-x86-jit-release tools...                       13.6s
   ```
   
-  ***flutter devices***
+  ***flutter devices*** 检查当前连接的设备（获得设备id，可以进行有针对性的设备启动）
   
   ```shell
   ➜  Desktop flutter devices
