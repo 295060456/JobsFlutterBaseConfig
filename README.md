@@ -381,7 +381,7 @@ Waiting for another flutter command to release the startup lock...
 
   * 一般情况下，该命令会启动（记录）最近一次你的运行设备（缺省值无需设备选择）
 
-  * 会自检下载（如果没有的话）iOS tools
+  * 会自检下载（如果没有的话）ios tools、ios-profile tools、ios-release tools
 
     ```
      Flutter assets will be downloaded from https://storage.googleapis.com. Make sure you trust this source!
@@ -435,6 +435,8 @@ Waiting for another flutter command to release the startup lock...
     prompt again.
     Installing and launching...    
     ```
+
+  * <font color=red>当项目工程已经成功顺利运行，这个时候，代码里面的修改，当保存（快捷键`command + s`）的时候，修改的内容会被热重载（Hot Reload）立即展示在设备上。**而不需要重新运行项目**</font>
 
 * 如果使用[***VSCode***](https://code.visualstudio.com/)编译器，IDE会自动侦测该文件内容；
 
