@@ -375,7 +375,7 @@ Waiting for another flutter command to release the startup lock...
 
 * 入口文件默认是`main.dart`，但是也可以对入口文件进行修改，使之不为`main.dart`；（以下的讨论都针对默认配置）
 
-  * 具体怎么配置？研讨中...TODO...
+  * [<font color=red>**具体配置情况**</font>](#launch.json)
 
 * <font size=7 color=red>**`flutter run`**</font>
 
@@ -391,7 +391,7 @@ Waiting for another flutter command to release the startup lock...
      Waiting for iPhone to connect...
     ```
 
-  * <font color=red>**手动运行指定的文件**</font>
+  * <font color=red>**手动运行指定的文件**</font> lib文件夹下的**main.dart**
 
     ```shell
     flutter run -t lib/main.dart
@@ -416,28 +416,27 @@ Waiting for another flutter command to release the startup lock...
     If you expected another device to be detected, please run "flutter doctor" to diagnose potential issues. You
     may also try increasing the time to wait for connected devices with the "--device-timeout" flag. Visit
     https://flutter.dev/setup/ for troubleshooting tips.
-    ➜  JobsFlutterBaseConfigDemo git:(main) flutter run -d 00008110-000625583EE3801E
-    Launching lib/main.dart on iPhone in debug mode...
-    Automatically signing iOS for device deployment using specified development team in Xcode project:
-    K92UCMVH8G
+    ➜  JobsFlutterBaseConfigDemo git:(main) ✗ flutter run lib/调用本地相册+调用本机 摄像头拍照（全部验证通过）/KKK.dart -d 00008110-000625583EE3801E
+    Launching lib/调用本地相册+调用本机摄像头拍照（全部验证通过）/KKK.dart on iPhone in debug mode...
+    Automatically signing iOS for device deployment using specified development team
+    in Xcode project: K92UCMVH8G
     Running Xcode build...                                                  
-     └─Compiling, linking and signing...                         3.5s
-    Xcode build done.                                           18.4s
-    You may be prompted to give access to control Xcode. Flutter uses Xcode to run your app. If access is not
-    allowed, you can change this through your Settings > Privacy & Security > Automation.
+     └─Compiling, linking and signing...                         4.3s
+    Xcode build done.                                           21.1s
+    You may be prompted to give access to control Xcode. Flutter uses Xcode to run your app. If access is not allowed, you
+    can change this through your Settings > Privacy & Security > Automation.
     The Dart VM Service was not discovered after 75 seconds. This is taking much longer than expected...
-    Open the Xcode window the project is opened in to ensure the app is running. If the app is not running, try
-    selecting "Product > Run" to fix the problem.
+    Open the Xcode window the project is opened in to ensure the app is running. If the app is not running, try selecting
+    "Product > Run" to fix the problem.
     
-    Click "Allow" to the prompt asking if you would like to find and connect devices on your local network. This
-    is required for wireless debugging. If you selected "Don't Allow", you can turn it on in Settings > Your App
-    Name > Local Network. If you don't see your app in the Settings, uninstall the app and rerun to see the
-    prompt again.
-    Installing and launching...    
+    Click "Allow" to the prompt asking if you would like to find and connect devices on your local network. This is required
+    for wireless debugging. If you selected "Don't Allow", you can turn it on in Settings > Your App Name > Local Network.
+    If you don't see your app in the Settings, uninstall the app and rerun to see the prompt again.
+    Installing and launching...                                            ⣄
     ```
-
+  
   * <font color=red>当项目工程已经成功顺利运行，这个时候，代码里面的修改，当保存（快捷键`command + s`）的时候，修改的内容会被热重载（Hot Reload）立即展示在设备上。**而不需要重新运行项目**</font>
-
+  
 * 如果使用[***VSCode***](https://code.visualstudio.com/)编译器，IDE会自动侦测该文件内容；
 
   * 只有`*.dart`文件才可以被运行（出现运行按钮）
@@ -823,6 +822,72 @@ Waiting for another flutter command to release the startup lock...
   
   ![image-20240513050237967](./assets/image-20240513050237967.png)
 
+### ***VSCode.配置计划任务***
+
+* 用于自定义命令行输出
+
+* 打开[***VSCode***](https://code.visualstudio.com/) –> `command+shift+p` –> 输入`Task：Configure Task`
+
+* 选择 `Create tasks.json file from template`
+
+* 在弹出的菜单中，选择 `Others`
+
+![image-20240520012955020](./assets/image-20240520012955020.png)
+
+* 在打开的 `tasks.json` 文件中，可以创建一个自定义任务。**并保存**。例如：
+
+![image-20240520013412500](./assets/image-20240520013412500.png)
+
+* 在 `tasks.json` 中定义的任务并不会直接在[***VSCode***](https://code.visualstudio.com/) 中执行，而是在“任务”菜单中执行的
+  * 打开[***VSCode***](https://code.visualstudio.com/) –> `command+shift+p` –> 输入`Tasks: Run Task`
+  
+  ![image-20240520013617974](./assets/image-20240520013617974.png)
+  
+  ![image-20240520013710038](./assets/image-20240520013710038.png)
+  
+  ![image-20240520013815448](./assets/image-20240520013815448.png)
+
+### <font id="launch.json">`launch.json`</font>
+
+* 文件位于项目根目录下`.vscode`这个隐藏文件夹里面。（项目初始是没有的，可以手动建立，也可以IDE自动建立）
+
+![image-20240520020701941](./assets/image-20240520020701941.png)
+
+* `launch.json`
+
+  * 文件位于项目根目录`.vscode`隐藏文件夹下。该文件在项目创立之初并不会自动创建。可以手动建立，亦可以IDE建立
+
+  ![image-20240520020701941](./assets/image-20240520020701941.png)
+  
+  * 编辑`launch.json`文件：
+  
+    * `flutterMode` 属性主要用于指定调试器运行的模式。目前，Flutter 支持以下几种模式 :
+      * `debug`: 调试模式。在调试模式下，应用程序会以较慢的速度运行，但提供了完整的调试支持，包括热重载和调试信息。
+  
+      * `profile`: 性能分析模式。在性能分析模式下，应用程序会以较快的速度运行，但会收集性能分析数据，以便进行性能优化和分析。
+  
+      * `release`: 发布模式。在发布模式下，应用程序会以最快的速度运行，但不会包含调试信息，并且会进行代码优化，以便最终发布到应用商店中。
+  
+    ```json
+    {
+      // 使用 IntelliSense 了解相关属性。 
+      // 悬停以查看现有属性的描述。
+      // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+      "version": "0.2.0",
+      "configurations": [
+          {
+              "name": "JobsFlutterBaseConfigDemo",// 调试配置名称
+              "request": "launch",// 调试器请求类型，通常为 "launch" 或 "attach"
+              "type": "dart",// 调试器类型，通常为 "dart" 或 "flutter"
+              "program": "lib/调用本地相册+调用本机摄像头拍照（全部验证通过）/CameraDemo.dart",// 要调试的程序的入口点
+              "flutterMode": "debug"
+          }
+      ]
+    }
+
+* 启用方式：
+
+![image-20240520021415650](./assets/image-20240520021415650.png)
 ## 一些报错的处理经验记录
 
 * <font color="red">***ERROR:flutter/shell/platform/darwin/graphics/FlutterDarwinContextMetalImpeller.mm(42)] Using the Impeller rendering backend.***</font> 
