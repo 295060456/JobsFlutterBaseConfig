@@ -125,11 +125,217 @@ Waiting for another flutter command to release the startup lock...
 
 ### 关于Flutter版本的切换
 
-* Flutter.SDK 旧版本的下载页面：[**Flutter SDK Archive**](https://docs.flutter.dev/release/archive?tab=macos)
-* https://blog.csdn.net/haoxuhong/article/details/131120689
-  https://juejin.cn/post/7109797407109414920
-* https://fvm.app/
-* which fvm
+![image-20240520193213663](./assets/image-20240520193213663.png)
+
+* 相关阅读
+
+  * [**flutter多版本切换**](https://blog.csdn.net/haoxuhong/article/details/131120689)
+  * [**Flutter使用FVM实现多个版本并存，多环境配置**](https://juejin.cn/post/7109797407109414920)
+
+* Flutter.SDK旧版本的下载页面：[**Flutter SDK Archive**](https://docs.flutter.dev/release/archive?tab=macos)
+
+* 查看[**FVM**](https://fvm.app/)的安装路径
+
+  ```shell
+  ➜  Desktop which fvm
+  /Users/jobs/.pub-cache/bin/fvm
+  ```
+
+* 查看Flutter版本
+
+  * 定位到Flutter.SDK根目录下的bin目录下的flutter可执行文件 ，执行参数--version
+
+    ```shell
+    Last login: Mon May 20 18:42:25 on ttys005
+    ➜  Desktop /Users/jobs/Documents/GitHub/Flutter.SDK/flutter.sdk_3.7.12/bin 
+    ➜  bin git:(stable) ✗ /Users/jobs/Documents/GitHub/Flutter.SDK/flutter.sdk_3.7.12/bin/flutter --version
+    
+    ┌─────────────────────────────────────────────────────────┐
+    │ A new version of Flutter is available!                  │
+    │                                                         │
+    │ To update to the latest version, run "flutter upgrade". │
+    └─────────────────────────────────────────────────────────┘
+    Flutter 3.7.12 • channel stable • https://github.com/flutter/flutter.git
+    Framework • revision 4d9e56e694 (1 年 1 个月前) • 2023-04-17 21:47:46 -0400
+    Engine • revision 1a65d409c7
+    Tools • Dart 2.19.6 • DevTools 2.20.1
+    
+      ╔════════════════════════════════════════════════════════════════════════════╗
+      ║                 Welcome to Flutter! - https://flutter.dev                  ║
+      ║                                                                            ║
+      ║ The Flutter tool uses Google Analytics to anonymously report feature usage ║
+      ║ statistics and basic crash reports. This data is used to help improve      ║
+      ║ Flutter tools over time.                                                   ║
+      ║                                                                            ║
+      ║ Flutter tool analytics are not sent on the very first run. To disable      ║
+      ║ reporting, type 'flutter config --no-analytics'. To display the current    ║
+      ║ setting, type 'flutter config'. If you opt out of analytics, an opt-out    ║
+      ║ event will be sent, and then no further information will be sent by the    ║
+      ║ Flutter tool.                                                              ║
+      ║                                                                            ║
+      ║ By downloading the Flutter SDK, you agree to the Google Terms of Service.  ║
+      ║ Note: The Google Privacy Policy describes how data is handled in this      ║
+      ║ service.                                                                   ║
+      ║                                                                            ║
+      ║ Moreover, Flutter includes the Dart SDK, which may send usage metrics and  ║
+      ║ crash reports to Google.                                                   ║
+      ║                                                                            ║
+      ║ Read about data we send with crash reports:                                ║
+      ║ https://flutter.dev/docs/reference/crash-reporting                         ║
+      ║                                                                            ║
+      ║ See Google's privacy policy:                                               ║
+      ║ https://policies.google.com/privacy                                        ║
+      ╚════════════════════════════════════════════════════════════════════════════╝
+    ➜  bin git:(stable) ✗   
+    ```
+    
+  * <font color=red>**查看当前项目所使用的Flutter版本**</font> 
+
+    *先定位到项目根目录，再运行*
+    
+    ```shell
+    fvm flutter --version
+    ```
+
+* [**FVM**](https://fvm.app/)，一个Flutter 版本管理的工具
+
+  * 旨在简化多个 Flutter SDK 版本的管理；
+
+  * 它允许开发者为每个项目设置特定的 Flutter.SDK 版本，确保构建的一致性，并更容易测试新版本；
+
+  * [**FVM**](https://fvm.app/) 解决了 SDK 频道切换慢、重复安装和团队环境不一致等问题；
+
+  * 它提供一个简单直观的 API，增强而不改变 Flutter 的功能
+
+  * 安装 [**FVM**](https://fvm.app/) 
+
+    ```shell
+    Last login: Mon May 20 18:55:56 on ttys004
+    ➜  Desktop dart pub global activate fvm
+    Downloading packages... (1.5s)s)
+    + args 2.5.0
+    + async 2.11.0
+    + boolean_selector 2.1.1
+    + characters 1.3.0
+    + cli_completion 0.5.0
+    + clock 1.1.1
+    + collection 1.18.0
+    + dart_console 1.2.0 (4.1.0 available)
+    + dart_mappable 4.2.2
+    + date_format 2.0.7
+    + equatable 2.0.5
+    + ffi 2.1.2
+    + file 7.0.0
+    + fvm 3.1.4
+    + git 2.2.1
+    + http 1.2.1
+    + http_parser 4.0.2
+    + interact 2.2.0
+    + intl 0.18.1 (0.19.0 available)
+    + io 1.0.4
+    + json_annotation 4.9.0
+    + jsonc 0.0.3
+    + mason_logger 0.2.15
+    + matcher 0.12.16+1
+    + meta 1.15.0
+    + path 1.9.0
+    + platform 3.1.4
+    + process 5.0.2
+    + pub_semver 2.1.4
+    + pub_updater 0.4.0
+    + pubspec 2.3.0
+    + quiver 3.2.1
+    + scope 4.1.0
+    + source_span 1.10.0
+    + stack_trace 1.11.1
+    + stream_channel 2.1.2
+    + string_scanner 1.2.0
+    + term_glyph 1.2.1
+    + test_api 0.7.1
+    + tint 2.0.1
+    + type_plus 2.1.1
+    + typed_data 1.3.2
+    + uri 1.0.0
+    + web 0.5.1
+    + win32 5.5.1
+    + yaml 3.1.2
+    Building package executables... 
+    Built fvm:compile.
+    Built fvm:main.
+    Installed executable fvm.
+    Warning: Pub installs executables into $HOME/.pub-cache/bin, which is not on your path.
+    You can fix that by adding this to your shell's config file (.zshrc, .bashrc, .bash_profile, etc.):
+    
+      export PATH="$PATH":"$HOME/.pub-cache/bin"
+    
+    Activated fvm 3.1.4.
+    ➜  Desktop 
+    ```
+
+    * [**FVM**](https://fvm.app/)的环境配置
+  
+      ```ruby
+      export PATH="$PATH":"$HOME/.pub-cache/bin"
+      ```
+  
+  * ```shell
+    ➜  flutter_getx-main fvm use 3.7.12   
+    Flutter SDK: SDK Version : 3.7.12 is not installed.
+    ✔ Would you like to install it now? · yes                                                                     
+    
+    ✓ Flutter SDK: SDK Version : 3.7.12 installed! (3.7s)
+    Setting up Flutter SDK: 3.7.12
+    
+    Downloading Darwin arm64 Dart SDK from Flutter engine 1a65d409c7a1438a34d21b60bf30a6fd5db59314...
+      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                     Dload  Upload   Total   Spent    Left  Speed
+    100  217M  100  217M    0     0  2239k      0  0:01:39  0:01:39 --:--:-- 2376k
+    Building flutter tool...
+    Flutter 3.7.12 • channel stable • https://github.com/flutter/flutter.git
+    Framework • revision 4d9e56e694 (1 年 1 个月前) • 2023-04-17 21:47:46 -0400
+    Engine • revision 1a65d409c7
+    Tools • Dart 2.19.6 • DevTools 2.20.1
+    
+    ✓ Flutter SDK: SDK Version : 3.7.12 is setup
+    ┌─────────────────────────────────────────────────┐
+    │ ⚠ Flutter SDK does not meet project constraints │
+    └─────────────────────────────────────────────────┘
+    SDK Version : 3.7.12 has Dart SDK 2.19.6 does not meet the project constraints of >=3.0.1 <4.0.0.
+    This could cause unexpected behavior or issues.
+    
+    ✔ Would you like to proceed? · yes                                                                            
+    [WARN] Project is not a git repository. 
+     But will set .gitignore as IDEs may use it,to determine what to index and display on searches,
+    You should add the fvm version directory ".fvm/" to .gitignore.
+    ✔ Would you like to do that now? · yes                                                                        
+    ✓ Added .fvm/ to .gitignore
+    
+    ✗ Could not resolve dependencies. (22.5s)
+    
+    The current Dart SDK version is 2.19.6.
+    
+    Because getx_demo1 requires SDK version >=3.0.1 <4.0.0, version solving failed.
+    pub get failed
+    command: "/Users/jobs/fvm/versions/3.7.12/bin/cache/dart-sdk/bin/dart __deprecated_pub --directory . get --example"
+    pub env: {
+      "FLUTTER_ROOT": "/Users/jobs/fvm/versions/3.7.12",
+      "PUB_ENVIRONMENT": "flutter_cli:get",
+      "PUB_CACHE": "/Users/jobs/.pub-cache",
+    }
+    exit code: 1
+    
+    
+    The error could indicate incompatible dependencies to the SDK.
+    ✔ Would you like to continue pinning this version anyway? · yes                                               
+    ✓ Project now uses Flutter SDK : SDK Version : 3.7.12
+    
+    ➜  flutter_getx-main fvm flutter --version
+    Flutter 3.7.12 • channel stable • https://github.com/flutter/flutter.git
+    Framework • revision 4d9e56e694 (1 年 1 个月前) • 2023-04-17 21:47:46 -0400
+    Engine • revision 1a65d409c7
+    Tools • Dart 2.19.6 • DevTools 2.20.1
+    ```
+    
 
 ## <font id="MacOS.VSCode.新建Dart.Flutter工程">***MacOS.VSCode.新建Dart.Flutter工程***</font>
 
