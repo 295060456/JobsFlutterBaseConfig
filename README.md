@@ -123,6 +123,14 @@ Waiting for another flutter command to release the startup lock...
 
 * 对xcode关联的相关设备进行删除以后，在Flutter编译器（比如[***VSCode***](https://code.visualstudio.com/) ）里面，可能是没有同步的，还保存着上一个已经移除或者销毁的iOS模拟器指向（这个时候是无法成功唤起iOS模拟器的）。在选择编译器的时候，请注意检查模拟器的ID是否能够对得上；
 
+### 关于Flutter版本的切换
+
+* Flutter.SDK 旧版本的下载页面：[**Flutter SDK Archive**](https://docs.flutter.dev/release/archive?tab=macos)
+* https://blog.csdn.net/haoxuhong/article/details/131120689
+  https://juejin.cn/post/7109797407109414920
+* https://fvm.app/
+* which fvm
+
 ## <font id="MacOS.VSCode.新建Dart.Flutter工程">***MacOS.VSCode.新建Dart.Flutter工程***</font>
 
 * 下载并正确配置[***VSCode***](https://code.visualstudio.com/)： 配置好了这个以后，在终端就可以用 *code .* 的形式唤起 [***VSCode***](https://code.visualstudio.com/) 
