@@ -341,7 +341,11 @@ Waiting for another flutter command to release the startup lock...
 
 * 下载并正确配置[***VSCode***](https://code.visualstudio.com/)： 配置好了这个以后，在终端就可以用 *code .* 的形式唤起 [***VSCode***](https://code.visualstudio.com/) 
 
-  * 打开[***VSCode***](https://code.visualstudio.com/) –> `command+shift+p` –> 输入`shell command` –> 点击提示`Shell Command: Install ‘code’ command in PATH`运行
+  * 打开[***VSCode***](https://code.visualstudio.com/) 
+  * –> `command+shift+p` 
+  * –> 输入`shell command` 
+  * –> 点击提示`Shell Command: Install ‘code’ command in PATH`运行
+  * 
 
 * 将***Dart.Flutter.SDK*** 与[***VSCode***](https://code.visualstudio.com/)和 ***MacOS*** 进行关联
 
