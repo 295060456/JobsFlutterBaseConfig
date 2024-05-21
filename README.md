@@ -1,3 +1,7 @@
+---
+typora-copy-images-to: ./assets
+---
+
 # jobs_flutter_base_config
 - [jobs\_flutter\_base\_config](#jobs_flutter_base_config)
   - [项目配置](#项目配置)
@@ -197,7 +201,7 @@ Waiting for another flutter command to release the startup lock...
     fvm flutter --version
     ```
   * 用[**FVM**](https://fvm.app/)管理当前项目的Flutter.SDK版本的SDK路径：<font color=red>**在`.fvm`隐藏文件夹路径下**</font>
-![image-20240521160033111](/Users/admin/Library/Application Support/typora-user-images/image-20240521160033111.png)
+![img](/Users/admin/Documents/Github/JobsFlutterBaseConfig/assets/image-20240521160033111.png)
 
 * [**FVM**](https://fvm.app/)，一个Flutter 版本管理的工具
 
