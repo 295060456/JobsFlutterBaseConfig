@@ -1,101 +1,89 @@
----
-typora-copy-images-to: ./assets
----
-
 # jobs_flutter_base_config
-- [jobs\_flutter\_base\_config](#jobs_flutter_base_config)
-  - [项目配置](#项目配置)
-    - [关于xcode.iOS模拟器](#关于xcodeios模拟器)
-  - [***MacOS.VSCode.新建Dart.Flutter工程***](#macosvscode新建dartflutter工程)
-  - [<font color=red>***运行Dart.Flutter工程***</font>](#运行Dart.Flutter工程)
-  - <span style="color:red">[调试工具](#调试工具)</span>
-    - [***Dart.Flutter.DevTools***](#dartflutterdevtools)
-  - [一些报错的处理经验记录](#一些报错的处理经验记录)
-  - [其他工具](#其他工具)
-
-## **项目配置**
+## **前言**
 
 * 每个项目工程里面都加入`双击运行.command`。方便启动项目
 
-```bash
-#! /bin/sh
+  ```shell
+  #! /bin/sh
+  
+  # 获取当前脚本文件的目录
+  current_directory=$(dirname "$(readlink -f "$0")")
+  echo $current_directory
+  cd $current_directory
+  # 打开iOS模拟器
+  open -a Simulator
+  # 用VSCode打开项目
+  code .
+  ```
 
-# 获取当前脚本文件的目录
-current_directory=$(dirname "$(readlink -f "$0")")
-echo $current_directory
-cd $current_directory
-# 打开iOS模拟器
-open -a Simulator
-# 用VSCode打开项目
-code .
-```
+* Flutter项目的命名**只能字母全小写**，不能有大写。单词之间用`__`进行分隔
 
-* Flutter项目的命名**只能字母全小写**，不能有大写。之间用`__`进行分隔
-* Flutter项目没有和xcode项目一样的目录（`*.xcodeproj`）结构，所以在引入头文件的时候，需要带上路径
-  * 如果是xcode项目，那么编译文件是根据目录文件（`*.xcodeproj`）来的。有些时候在进行代码git拉取合并的时候，或者对项目结构（文件先后顺序，文件夹包含关系等）做调整的时候，可能会出现目录文件不同步的情况，可能会导致一些异常，这样中心化的管理方式就比较落后。一个文件是否包含在项目里面进入编译期，是根据目录文件决定的。也就是以用xcode编辑器进行编辑，但是并不包含在项目工程打包的编译期间内
-  * 没有特定的目录文件，编辑器只会在打包的时候，对Flutter的几个关键命名的文件夹进行索取。里面包含的文件通过带路径的方式，就避免了中心化目录文件的问题
+* Flutter项目没有和xcode项目一样的目录索引（`*.xcodeproj`）结构，所以在引入头文件的时候，需要带上路径
+  * 如果是xcode项目，那么编译文件是根据目录索引文件（`*.xcodeproj`）来的。有些时候在进行代码git拉取合并的时候，或者对项目结构（文件先后顺序，文件夹包含关系等）做调整的时候，可能会出现目录文件不同步的情况，可能会导致一些异常，这样中心化的管理方式就比较落后。一个文件是否包含在项目里面进入编译期，是根据目录文件决定的。也就是以用xcode编辑器进行编辑，但是并不包含在项目工程打包的编译期间内
+  * 去中心化。没有特定的目录文件，编辑器只会在打包的时候，对Flutter的几个关键命名的文件夹进行索取。里面包含的文件通过带路径的方式，就避免了中心化目录文件的问题
+  
 * 如果更新了Flutter SDK，那么再次进入项目的时候，编译器会执行初始化操作👇🏻
 
-```shell
-Building flutter tool...
-Resolving dependencies...
-Got dependencies.
-Flutter assets will be downloaded from https://storage.flutter-io.cn. Make sure you trust this source!
-Downloading package sky_engine...                                   6.5s
-Downloading flutter_patched_sdk tools...                           545ms
-Downloading flutter_patched_sdk_product tools...                   423ms
-Downloading darwin-arm64 tools...                                  11.3s
-Downloading darwin-arm64 tools...                                  48.4s
-Downloading darwin-arm64/font-subset tools...                    2,160ms
-[✓] Flutter (Channel stable, 3.19.6, on macOS 14.4.1 23E224 darwin-arm64, locale zh-Hans-US)
-    • Flutter version 3.19.6 on channel stable at /Users/jobs/Documents/GitHub/Flutter.SDK/flutter
-    • Upstream repository https://github.com/flutter/flutter.git
-    • Framework revision 54e66469a9 (2 周前), 2024-04-17 13:08:03 -0700
-    • Engine revision c4cd48e186
-    • Dart version 3.3.4
-    • DevTools version 2.31.1
-    • Pub download mirror https://pub.flutter-io.cn
-    • Flutter download mirror https://storage.flutter-io.cn
-
-[✓] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
-    • Android SDK at /Users/jobs/Library/Android/sdk
-    • Platform android-34, build-tools 34.0.0
-    • ANDROID_HOME = /Users/jobs/Library/Android/sdk
-    • Java binary at: /Applications/Android Studio.app/Contents/jbr/Contents/Home/bin/java
-    • Java version OpenJDK Runtime Environment (build 17.0.9+0-17.0.9b1087.7-11185874)
-    • All Android licenses accepted.
-
-[✓] Xcode - develop for iOS and macOS (Xcode 15.3)
-    • Xcode at /Applications/Xcode.app/Contents/Developer
-    • Build 15E204a
-    • CocoaPods version 1.15.2
-
-[✓] Chrome - develop for the web
-    • Chrome at /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
-
-[✓] Android Studio (version 2023.2)
-    • Android Studio at /Applications/Android Studio.app/Contents
-    • Flutter plugin can be installed from:
-      🔨 https://plugins.jetbrains.com/plugin/9212-flutter
-    • Dart plugin can be installed from:
-      🔨 https://plugins.jetbrains.com/plugin/6351-dart
-    • Java version OpenJDK Runtime Environment (build 17.0.9+0-17.0.9b1087.7-11185874)
-
-[✓] VS Code (version 1.88.1)
-    • VS Code at /Applications/Visual Studio Code.app/Contents
-    • Flutter extension version 3.88.0
-
-[✓] Connected device (3 available)
-    • iPhone (mobile) • 00008110-000625583EE3801E • ios            • iOS 17.4.1 21E236
-    • macOS (desktop) • macos                     • darwin-arm64   • macOS 14.4.1 23E224 darwin-arm64
-    • Chrome (web)    • chrome                    • web-javascript • Google Chrome 124.0.6367.93
-
-[✓] Network resources
-    • All expected network resources are available.
-
-• No issues found!
-exit code 0
-```
+  ```shell
+  Building flutter tool...
+  Resolving dependencies...
+  Got dependencies.
+  Flutter assets will be downloaded from https://storage.flutter-io.cn. Make sure you trust this source!
+  Downloading package sky_engine...                                   6.5s
+  Downloading flutter_patched_sdk tools...                           545ms
+  Downloading flutter_patched_sdk_product tools...                   423ms
+  Downloading darwin-arm64 tools...                                  11.3s
+  Downloading darwin-arm64 tools...                                  48.4s
+  Downloading darwin-arm64/font-subset tools...                    2,160ms
+  [✓] Flutter (Channel stable, 3.19.6, on macOS 14.4.1 23E224 darwin-arm64, locale zh-Hans-US)
+      • Flutter version 3.19.6 on channel stable at /Users/jobs/Documents/GitHub/Flutter.SDK/flutter
+      • Upstream repository https://github.com/flutter/flutter.git
+      • Framework revision 54e66469a9 (2 周前), 2024-04-17 13:08:03 -0700
+      • Engine revision c4cd48e186
+      • Dart version 3.3.4
+      • DevTools version 2.31.1
+      • Pub download mirror https://pub.flutter-io.cn
+      • Flutter download mirror https://storage.flutter-io.cn
+  
+  [✓] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
+      • Android SDK at /Users/jobs/Library/Android/sdk
+      • Platform android-34, build-tools 34.0.0
+      • ANDROID_HOME = /Users/jobs/Library/Android/sdk
+      • Java binary at: /Applications/Android Studio.app/Contents/jbr/Contents/Home/bin/java
+      • Java version OpenJDK Runtime Environment (build 17.0.9+0-17.0.9b1087.7-11185874)
+      • All Android licenses accepted.
+  
+  [✓] Xcode - develop for iOS and macOS (Xcode 15.3)
+      • Xcode at /Applications/Xcode.app/Contents/Developer
+      • Build 15E204a
+      • CocoaPods version 1.15.2
+  
+  [✓] Chrome - develop for the web
+      • Chrome at /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+  
+  [✓] Android Studio (version 2023.2)
+      • Android Studio at /Applications/Android Studio.app/Contents
+      • Flutter plugin can be installed from:
+        🔨 https://plugins.jetbrains.com/plugin/9212-flutter
+      • Dart plugin can be installed from:
+        🔨 https://plugins.jetbrains.com/plugin/6351-dart
+      • Java version OpenJDK Runtime Environment (build 17.0.9+0-17.0.9b1087.7-11185874)
+  
+  [✓] VS Code (version 1.88.1)
+      • VS Code at /Applications/Visual Studio Code.app/Contents
+      • Flutter extension version 3.88.0
+  
+  [✓] Connected device (3 available)
+      • iPhone (mobile) • 00008110-000625583EE3801E • ios            • iOS 17.4.1 21E236
+      • macOS (desktop) • macos                     • darwin-arm64   • macOS 14.4.1 23E224 darwin-arm64
+      • Chrome (web)    • chrome                    • web-javascript • Google Chrome 124.0.6367.93
+  
+  [✓] Network resources
+      • All expected network resources are available.
+  
+  • No issues found!
+  exit code 0
+  ```
 
 *这个时候如果强行运行代码，会得到编译器的提示*
 
@@ -103,31 +91,198 @@ exit code 0
 Waiting for another flutter command to release the startup lock...
 ```
 
-### 关于xcode.iOS模拟器
+### JavaSDK For Android in MacOS
 
-* [**关联运行设备**](# 关联运行设备)
+* 因为Android基于Java，在使用[**Android Studio**](https://developer.android.com/studio?gad_source=1&gclid=Cj0KCQjwjLGyBhCYARIsAPqTz1-nhemrLBKyuxMDS0L2xhHGvrNdfmH3N9GZcy97GcrwbpZuIiCQ_c4aAm14EALw_wcB&gclsrc=aw.ds&hl=zh-cn)作为IDE进行编辑项目的时候，可能会对项目环境存在有Java环境的依赖
 
-* *Mac终端命令行启动*
+* 某些第三方包、[**Android Studio**](https://developer.android.com/studio?gad_source=1&gclid=Cj0KCQjwjLGyBhCYARIsAPqTz1-nhemrLBKyuxMDS0L2xhHGvrNdfmH3N9GZcy97GcrwbpZuIiCQ_c4aAm14EALw_wcB&gclsrc=aw.ds&hl=zh-cn)生成的IDE文件，亦可能对项目环境存在有Java环境的依赖
 
-   ```shell
-   open -a Simulator
-   ```
+* [**Oracle.JavaSDK**](https://www.oracle.com/ph/java/technologies/downloads/)安装，略
 
-* 不同的设备，拥有不同的CPU，也就会拥有不同的CPU指令集，也就是打包的结果是不一样的。如果不指定设备，则无法继续编译；
+* 推荐 [**OpenJDK**](https://openjdk.org/)（**Open** **J**ava **D**evelopment **K**it），是 Java 平台标准版（Java SE）的开源实现。它由 Oracle 主导开发，但也有其他公司和个人的贡献。OpenJDK 提供了一个免费的、开源的 Java 开发环境，涵盖了开发和运行 Java 应用程序所需的所有组件。
 
-* xcode的设备选择里面必须选择了合适版本的iOS模拟器，并且进行初始化。否则Flutter编译器（比如VSCode）会无法找到iOS模拟器，进而造成代码的编译运行失败；
+  * 安装制定版本的[**JavaSDK**](https://www.openlogic.com/openjdk-downloads?field_java_parent_version_target_id=416&field_operating_system_target_id=431&field_architecture_target_id=391&field_java_package_target_id=All) 
 
-* 正常情况下，在xcode里面新添加了iOS模拟器设备，不管是否被初始化，这个时候这个iOS模拟器设备就会被系统自动分配有ID，这个分配ID的过程没有办法人为干预，脚本是需要铆定这个ID的，所以这一个步骤，只能手动；
+    * ```shell
+      #! /bin/sh
+      
+      # 安装 SDKMAN
+      curl -s "https://get.sdkman.io" | bash
+      source "$HOME/.sdkman/bin/sdkman-init.sh"
+      # 利用SDKMAN，查询可用的Java版本号
+      sdk list java
+      
+      # 安装最新版本的 JDK
+      sdk install java
+      # 安装JDK8
+      sdk install java 8.0.292-open 
+      # 安装JDK11
+      sdk install java 11.0.11-open
+      
+      # 将 OpenJDK 8 设置为默认的 Java 版本
+      sdk default java 8.0.292-open
+      
+      # 验证安装
+      java -version
+      ```
 
-* [**xcode iOS模拟器不显示，只可以选择真机的解决办法**](# https://juejin.cn/post/6844903568869163015)
+      ```shell
+      #! /bin/sh
+      
+      # 随时切换 Java 版本
+      sdk use java 11.0.11-open
+      # 查看当前使用的 Java 版本
+      sdk current java
+      ```
 
-   * 有些时候，因为未知原因（比如：新装的系统或者新做的编程环境，刚下载的xcode这个时候模拟器是没有初始化的），编译器无法正常引导iOS模拟器启动，这个时候就需要用一个xcode项目进行引导模拟器初始化（比如新建一个空项目，用模拟器跑）；
-   * 如果在xcode的设备管理里面删除了iOS模拟器相关版本的设备，只要是有新的iOS模拟器设备加入，都需要被初始化；（真机不需要被初始化）。至于初始化过程，[***VSCode***](https://code.visualstudio.com/)编译器如果不能成功唤起iOS模拟器，则需要进行手动唤起；
-   * xcode模拟器的UUID是xcode自生成的（**人工无法干预**），也就是至少需要打开一个正常的xcode工程来进行模拟器设备的选择，这个是模拟器运行的一个大前提；
+      *查看利用 OpenJDK 安装的 Java 环境*
 
-* 对xcode关联的相关设备进行删除以后，在Flutter编译器（比如[***VSCode***](https://code.visualstudio.com/) ）里面，可能是没有同步的，还保存着上一个已经移除或者销毁的iOS模拟器指向（这个时候是无法成功唤起iOS模拟器的）。在选择编译器的时候，请注意检查模拟器的ID是否能够对得上；
+      ```shell
+      ➜  Desktop java -version
+      openjdk version "21.0.3" 2024-04-16 LTS
+      OpenJDK Runtime Environment Temurin-21.0.3+9 (build 21.0.3+9-LTS)
+      OpenJDK 64-Bit Server VM Temurin-21.0.3+9 (build 21.0.3+9-LTS, mixed mode)
+      ```
 
-### 关于Flutter版本的切换
+    * [**配置环境变量**](#MacOS.配置文件)
+
+      ```ruby
+      export SDKMAN_DIR="$HOME/.sdkman"
+      [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+      ```
+
+### 配置文件⚠️
+
+* <font color=red id="MacOS.配置文件">**系统一般就下面👇这三个文件进行配置引导**</font>
+
+  ```sh
+  #! /bin/sh
+  open ~/.bash_profile
+  open ~/.bashrc
+  
+  open ~/.zshrc
+  ```
+
+  - **对于 Bash：**
+    - 登录 shell：先执行 `~/.bash_profile`，如果在 `~/.bash_profile` 中有 `source ~/.bashrc`，则会接着执行 `~/.bashrc`。
+    - 非登录 shell：只执行 `~/.bashrc`。
+  - **对于 Zsh：**
+    - 无论是登录 shell 还是非登录 shell，都只执行 `~/.zshrc`。
+
+* 配置  <font color=red id=".bash_profile">*`.bash_profile`*</font> 文件
+
+    ```ruby
+    # 配置Flutter环境
+    # 这里的路径即为Dart.Flutter.SDK名下的为bin目录（主要取决于你下载的SDK的绝对路径）
+    export PATH=/Users/jobs/Documents/GitHub/Flutter.SDK/flutter/bin:$PATH
+    #【相关阅读：Flutter切换源】https://juejin.cn/post/7204285137047257148
+    # 防止域名在中国大陆互联网环境下的被屏蔽
+    # export PUB_HOSTED_URL=https://pub.flutter-io.cn # 告诉了 Dart.Flutter 和 Dart 的包管理器 pub 在执行 pub get 或 pub upgrade 命令时使用备用仓库而不是默认的官方仓库。
+    # Flutter官方正版源（温馨提示：海外IP访问大陆源，不开VPN会拉取失败）
+    export PUB_HOSTED_URL=https://pub.dartlang.org
+    # FLUTTER_STORAGE_BASE_URL 告诉了 Dart.Flutter SDK 在需要下载二进制文件或工具时从备用存储库获取，而不是从默认的 Google 存储库获取。
+    # export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn # Flutter中国（七牛云）
+    export FLUTTER_STORAGE_BASE_URL=https://storage.googleapis.com # Flutter官方的 Google Cloud 存储库地址
+    
+    # 配置Android环境
+    export ANDROID_HOME=/Users/jobs/Library/Android/sdk
+    export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+    export PATH=${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin
+    
+    # 每次打开Mac终端的时候，默认定位📌当前路径为系统桌面
+    #【❤️细节处理❤️】cd ~/Desktop 这么写的话，虽然新开的Mac终端定位📌于系统桌面，但是VSCode这个IDE里面的终端路径定位📌就不是工程当前目录
+    cd ./Desktop 
+    ```
+
+  * <font color=red>**Flutter源（依据具体的情况，比如修改配置文件：`.bash_profile`）**</font>
+
+    * 相关阅读：[**Flutter切换源**](https://juejin.cn/post/7204285137047257148)
+
+    * <font id="Flutter源">*打印系统当前所使用的Flutter源*</font>
+
+      ```shell
+      Last login: Thu May 16 01:55:41 on ttys000
+      ➜  Desktop echo $FLUTTER_STORAGE_BASE_URL
+      
+      https://storage.flutter-io.cn
+      ➜  Desktop echo $PUB_HOSTED_URL          
+      
+      https://pub.dartlang.org
+      ```
+
+    * [**Flutter官方正版源**](https://pub.dartlang.org)
+
+      |   提供商    |    **PUB_HOSTED_URL**    |         **FLUTTER_STORAGE_BASE_URL**         |
+      | :---------: | :----------------------: | :------------------------------------------: |
+      | Flutter官方 | https://pub.dartlang.org | https://storage.googleapis.com/flutter_infra |
+
+    * [**Flutter中国大陆源**](https://pub.flutter-io.cn)
+
+      |        提供商         |          **PUB_HOSTED_URL**           |     **FLUTTER_STORAGE_BASE_URL**     |
+      | :-------------------: | :-----------------------------------: | :----------------------------------: |
+      |       上海交大        |      mirror.sjtu.edu.cn/dart-pub      |          mirror.sjtu.edu.cn          |
+      |       清华大学        | mirrors.tuna.tsinghua.edu.cn/dart-pub | mirrors.tuna.tsinghua.edu.cn/flutter |
+      |       OpenTUNA        |         opentuna.cn/dart-pub          |         opentuna.cn/flutter          |
+      |         CNNIC         |       mirrors.cnnic.cn/dart-pub       |       mirrors.cnnic.cn/flutter       |
+      | Flutter中国（七牛云） |           pub.flutter-io.cn           |        storage.flutter-io.cn         |
+      |        腾讯云         |  mirrors.cloud.tencent.com/dart-pub   |  mirrors.cloud.tencent.com/flutter   |
+
+  * 保存配置，并且使之生效
+
+    ```shell
+    ➜  Desktop cd ..               
+    ➜  ~ source .bash_profile
+    ```
+
+  * 关于文件夹：`flutter/bin/cache`
+    * 这个文件夹在[**Github.FlutterSDK**](https://github.com/flutter/flutter)里面是**不存在的**，而是需要根据实际的设备情况来进行灵活（自动）下载的；
+    
+      ![image-20240516084202143](./assets/image-20240516084202143.png)
+    
+    * <font color=red>**即，[当前源](#Flutter源)是中国大陆 + 此时系统配置的`FLUTTER_STORAGE_BASE_URL`为Flutter官方源 ==> 此时依旧按照中国大陆源进行下载数据；**</font>
+    
+  * 自检命令：***flutter doctor -v***（`-v` == `verbose`参数意为详细或者冗长的打印输出，可省略）
+  
+    ```shell
+    Last login: Wed Mar 20 20:53:34 on ttys002
+    ➜  Desktop flutter doctor
+    Doctor summary (to see all details, run flutter doctor -v):
+    [✓] Flutter (Channel stable, 3.19.3, on macOS 14.4 23E214 darwin-arm64, locale
+        zh-Hans-US)
+    [✓] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
+    [✓] Xcode - develop for iOS and macOS (Xcode 15.3)
+    [✓] Chrome - develop for the web
+    [✓] Android Studio (version 2023.1)
+    [✓] VS Code (version 1.85.2)
+    [✓] Connected device (3 available)
+    [✓] Network resources
+    
+    • No issues found!
+    ```
+  
+### ***Dart.Flutter.SDK*** ↔️[***VSCode***](https://code.visualstudio.com/)和↔️***MacOS*** ![image-20240320205645750](./assets/image-20240320205645750.png)
+
+  * 可以直接去[***Flutter官网***](https://flutter.dev/)或者[***Flutter.GitHub***](https://github.com/flutter/flutter)地址下载以后，和编译器进行关联；
+  
+  * 也可以编译器智能监测下载***Dart.Flutter.SDK***进行自动关联；
+  
+  * 如果***Dart.Flutter.SDK***的位置发生了更改，那么需要在[***VSCode***](https://code.visualstudio.com/)编译器里面进行相应的映射：
+  
+    * 方式1：手动关联SDK，如下图所示👇🏻：<font color="red">编译过后，用 *Command + s* 进行保存</font>
+    
+      ![image-20240321153420881](./assets/image-20240321153420881.png)
+    
+      ![image-20240321153739756](./assets/image-20240321153739756.png)
+    
+    * 方式2：自动侦测SDK。在[***VSCode***](https://code.visualstudio.com/)里面，使用快捷键：*`Shift + command + p `* 唤起命令输入弹出框；输入：*Flutter:Change SDK*
+    
+  * 终端执行命令 *`code .`*打开[***VSCode***](https://code.visualstudio.com/)
+  
+    * 在[***VSCode***](https://code.visualstudio.com/)里面，使用快捷键：*`Shift + command + p `* 唤起命令输入弹出框；
+    * 在命令输入弹出框输入命令***Flutter: New Project*** 新建Dart.Flutter工程（自定义工程文件路径）。此时如果没有下载或者成功关联***Dart.Flutter.SDK***将会出现提示；
+    * ***Dart.Flutter.SDK***  <font color="red">自带Dart语言环境</font>；但这个Dart版本可能和系统上安装的Dart版本不一致。
+
+### 利用FVM对项目Flutter的版本进行切换♻️
 
 ![image-20240520193213663](./assets/image-20240520193213663.png)
 
@@ -145,9 +300,9 @@ Waiting for another flutter command to release the startup lock...
   /Users/jobs/.pub-cache/bin/fvm
   ```
 
-* 查看Flutter版本
+* 查看 Flutter.SDK 版本
 
-  * 定位到Flutter.SDK根目录下的bin目录下的flutter可执行文件 ，执行参数--version
+  * 定位到Flutter.SDK根目录下的`bin`目录下的flutter可执行文件 ，执行参数`--version`
 
     ```shell
     Last login: Mon May 20 18:42:25 on ttys005
@@ -407,136 +562,39 @@ Waiting for another flutter command to release the startup lock...
     Engine • revision 1a65d409c7
     Tools • Dart 2.19.6 • DevTools 2.20.1
     ```
-    
 
-## <font id="MacOS.VSCode.新建Dart.Flutter工程">***MacOS.VSCode.新建Dart.Flutter工程***</font>
-
-* 下载并正确配置[***VSCode***](https://code.visualstudio.com/)： 配置好了这个以后，在终端就可以用 *code .* 的形式唤起 [***VSCode***](https://code.visualstudio.com/) 
+* 下载并正确配置[***VSCode***](https://code.visualstudio.com/)： 配置好了这个以后，在终端就可以用 *`code .`* 的形式唤起 [***VSCode***](https://code.visualstudio.com/) 
 
   * 打开[***VSCode***](https://code.visualstudio.com/) 
   * –> `command+shift+p` 
   * –> 输入`shell command` 
   * –> 点击提示`Shell Command: Install ‘code’ command in PATH`运行
-  
-* 将***Dart.Flutter.SDK*** 与[***VSCode***](https://code.visualstudio.com/)和 ***MacOS*** 进行关联
 
-  * 终端执行*`open ~/.bash_profile`*，对其进行编辑；
+### 关于xcode.iOS模拟器
 
-  ![image-20240320205645750](./assets/image-20240320205645750.png)
+* [**关联运行设备**](# 关联运行设备)
 
-  <font color=red>*在`.bash_profile`文件里面，添加如下的环境变量；*</font>
+* *Mac终端命令行启动*
 
   ```shell
-  # 配置Flutter环境
-  # 这里的路径即为Dart.Flutter.SDK名下的为bin目录（主要取决于你下载的SDK的绝对路径）
-  export PATH=/Users/jobs/Documents/GitHub/Flutter.SDK/flutter/bin:$PATH
-  #【相关阅读：Flutter切换源】https://juejin.cn/post/7204285137047257148
-  # 防止域名在中国大陆互联网环境下的被屏蔽
-  # export PUB_HOSTED_URL=https://pub.flutter-io.cn # 告诉了 Dart.Flutter 和 Dart 的包管理器 pub 在执行 pub get 或 pub upgrade 命令时使用备用仓库而不是默认的官方仓库。
-  # Flutter官方正版源（温馨提示：海外IP访问大陆源，不开VPN会拉取失败）
-  export PUB_HOSTED_URL=https://pub.dartlang.org
-  # FLUTTER_STORAGE_BASE_URL 告诉了 Dart.Flutter SDK 在需要下载二进制文件或工具时从备用存储库获取，而不是从默认的 Google 存储库获取。
-  # export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn # Flutter中国（七牛云）
-  export FLUTTER_STORAGE_BASE_URL=https://storage.googleapis.com # Flutter官方的 Google Cloud 存储库地址
-  
-  # 配置Android环境
-  export ANDROID_HOME=/Users/jobs/Library/Android/sdk
-  export PATH=${PATH}:${ANDROID_HOME}/platform-tools
-  export PATH=${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin
-  
-  # 每次打开Mac终端的时候，默认定位📌当前路径为系统桌面
-  #【❤️细节处理❤️】cd ~/Desktop 这么写的话，虽然新开的Mac终端定位📌于系统桌面，但是VSCode这个IDE里面的终端路径定位📌就不是工程当前目录
-  cd ./Desktop 
+  open -a Simulator
   ```
 
-  * <font color=red>**Flutter源（依据具体的情况，修改`.bash_profile`配置文件）**</font>
+* 不同的设备==>拥有不同的CPU（Apple自研芯片和intel芯片）==> 会拥有不同的CPU指令集==>打包的结果是不一样的。如果不指定设备，则无法继续编译；
 
-    * 相关阅读：[**Flutter切换源**](https://juejin.cn/post/7204285137047257148)
+* xcode的设备选择里面必须选择了合适版本的iOS模拟器，并且进行初始化。否则Flutter编译器（比如[***VSCode***](https://code.visualstudio.com/)）会无法找到iOS模拟器，进而造成代码的编译运行失败；
 
-    * <font id="Flutter源">*打印系统当前所使用的Flutter源*</font>
+* 正常情况下，在xcode里面新添加了iOS模拟器设备，不管是否被初始化，这个时候这个iOS模拟器设备就会被系统自动分配有ID，这个分配ID的过程没有办法人为干预，脚本是需要铆定这个ID的，所以这一个步骤，只能手动；
 
-      ```shell
-      Last login: Thu May 16 01:55:41 on ttys000
-      ➜  Desktop echo $FLUTTER_STORAGE_BASE_URL
-      
-      https://storage.flutter-io.cn
-      ➜  Desktop echo $PUB_HOSTED_URL          
-      
-      https://pub.dartlang.org
-      ```
+* [**xcode iOS模拟器不显示，只可以选择真机的解决办法**](# https://juejin.cn/post/6844903568869163015)
 
-    * [**Flutter官方正版源**](https://pub.dartlang.org)
+  * 有些时候，因为未知原因（比如：新装的系统或者新做的编程环境，刚下载的xcode这个时候模拟器是没有初始化的），编译器无法正常引导iOS模拟器启动，这个时候就需要用一个xcode项目进行引导模拟器初始化（比如新建一个空项目，用模拟器跑）；
+  * 如果在xcode的设备管理里面删除了iOS模拟器相关版本的设备，只要是有新的iOS模拟器设备加入，都需要被初始化；（真机不需要被初始化）。至于初始化过程，[***VSCode***](https://code.visualstudio.com/)编译器如果不能成功唤起iOS模拟器，则需要进行手动唤起；
+  * xcode模拟器的UUID是xcode自生成的（**人工无法干预**），也就是至少需要打开一个正常的xcode工程来进行模拟器设备的选择，这个是模拟器运行的一个大前提；
 
-      |   提供商    |    **PUB_HOSTED_URL**    |         **FLUTTER_STORAGE_BASE_URL**         |
-      | :---------: | :----------------------: | :------------------------------------------: |
-      | Flutter官方 | https://pub.dartlang.org | https://storage.googleapis.com/flutter_infra |
+* 对xcode关联的相关设备进行删除以后，在Flutter编译器（比如[***VSCode***](https://code.visualstudio.com/) ）里面，可能是没有同步的，还保存着上一个已经移除或者销毁的iOS模拟器指向（这个时候是无法成功唤起iOS模拟器的）。在选择编译器的时候，请注意检查模拟器的ID是否能够对得上；
 
-    * [**Flutter中国大陆源**](https://pub.flutter-io.cn)
-
-      |        提供商         |          **PUB_HOSTED_URL**           |     **FLUTTER_STORAGE_BASE_URL**     |
-      | :-------------------: | :-----------------------------------: | :----------------------------------: |
-      |       上海交大        |      mirror.sjtu.edu.cn/dart-pub      |          mirror.sjtu.edu.cn          |
-      |       清华大学        | mirrors.tuna.tsinghua.edu.cn/dart-pub | mirrors.tuna.tsinghua.edu.cn/flutter |
-      |       OpenTUNA        |         opentuna.cn/dart-pub          |         opentuna.cn/flutter          |
-      |         CNNIC         |       mirrors.cnnic.cn/dart-pub       |       mirrors.cnnic.cn/flutter       |
-      | Flutter中国（七牛云） |           pub.flutter-io.cn           |        storage.flutter-io.cn         |
-      |        腾讯云         |  mirrors.cloud.tencent.com/dart-pub   |  mirrors.cloud.tencent.com/flutter   |
-
-  * 保存配置，并且使之生效
-
-  ```shell
-  ➜  Desktop cd ..               
-  ➜  ~ source .bash_profile
-  ```
-
-  * 关于文件夹：`flutter/bin/cache`
-    * 这个文件夹在[**Github.FlutterSDK**](https://github.com/flutter/flutter)里面是不存在的，而是需要根据实际的设备情况来进行灵活（自动）下载的；
-    
-    ![image-20240516084202143](./assets/image-20240516084202143.png)
-    * <font color=red>**即，[当前源](#Flutter源)是中国大陆 + 此时系统配置的`FLUTTER_STORAGE_BASE_URL`为Flutter官方源 ==> 此时依旧按照中国大陆源进行下载数据；**</font>
-
-  * 自检命令：***flutter doctor -v***（`-v`参数意为详细或者冗长的打印输出，可省略）
-
-  ```shell
-  Last login: Wed Mar 20 20:53:34 on ttys002
-  ➜  Desktop flutter doctor
-  Doctor summary (to see all details, run flutter doctor -v):
-  [✓] Flutter (Channel stable, 3.19.3, on macOS 14.4 23E214 darwin-arm64, locale
-      zh-Hans-US)
-  [✓] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
-  [✓] Xcode - develop for iOS and macOS (Xcode 15.3)
-  [✓] Chrome - develop for the web
-  [✓] Android Studio (version 2023.1)
-  [✓] VS Code (version 1.85.2)
-  [✓] Connected device (3 available)
-  [✓] Network resources
-  
-  • No issues found!
-  ```
-
-* 安装/IDE关联 ***Dart.Flutter.SDK***
-
-  * 可以直接去[***Flutter官网***](https://flutter.dev/)或者[***Flutter.GitHub***](https://github.com/flutter/flutter)地址下载以后，和编译器进行关联；
-
-  * 也可以编译器智能监测下载***Dart.Flutter.SDK***进行自动关联；
-
-  * 如果***Dart.Flutter.SDK***的位置发生了更改，那么需要在[***VSCode***](https://code.visualstudio.com/)编译器里面进行相应的映射：
-
-    * 方式1：手动关联SDK，如下图所示👇🏻：<font color="red">编译过后，用 *Command + s* 进行保存</font>
-
-    ![image-20240321153420881](./assets/image-20240321153420881.png)
-
-    ![image-20240321153739756](./assets/image-20240321153739756.png)
-
-    * 方式2：自动侦测SDK。在[***VSCode***](https://code.visualstudio.com/)里面，使用快捷键：*`Shift + command + p `* 唤起命令输入弹出框；输入：*Flutter:Change SDK*
-
-* 终端执行命令 *code .*打开[***VSCode***](https://code.visualstudio.com/)
-
-  * 在[***VSCode***](https://code.visualstudio.com/)里面，使用快捷键：*`Shift + command + p `* 唤起命令输入弹出框；
-  * 在命令输入弹出框输入命令***Flutter: New Project*** 新建Dart.Flutter工程（自定义工程文件路径）。此时如果没有下载或者成功关联***Dart.Flutter.SDK***将会出现提示；
-  * ***Dart.Flutter.SDK***  <font color="red">自带Dart语言环境</font>；但这个Dart版本可能和系统上安装的Dart版本不一致。
-
-* ### <font id="关联运行设备">关联运行设备</font>
+### <font id="关联运行设备">关联运行设备</font>
 
   * iOS模拟器：[***Xcode下载模拟器报错***](https://blog.csdn.net/saw471/article/details/136560974)
 
@@ -561,77 +619,78 @@ Waiting for another flutter command to release the startup lock...
 
     * 如果使用终端运行Dart.Flutter代码，则需要额外的，优先唤起iOS模拟器<font color=red>**（先关闭再开启，否则可能会无法唤起）**</font>
 
-    ```shell
-    # 关闭所有iOS模拟器
-    xcrun simctl shutdown all
-    # 检查是否有iOS模拟器进程存在(存在即杀进程)
-    if pgrep -f 'Simulator' >/dev/null; then
-        # 如果有，则会杀死所有包含"Simulator"字符串的进程
-        pkill -f 'Simulator'
-        echo "iOS模拟器进程已终止"
-    else
-        echo "没有找到iOS模拟器进程"
-    fi
-    
-    open -a Simulator
-    ```
-  
-    * 如果是通过[***VSCode***](https://code.visualstudio.com/) ，那么只需要进行设备关联即可以唤起模拟器设备；
-  
-      ![image-20240321041753483](./assets/image-20240321041753483.png)
-  
-  * ***Android***模拟器：运行环境是**Android Studio**。下载完成此IDE以后，需要打开**Android Studio**，IDE会自动安装***Android.SDK***
-  
-    * ###### <font id="Android.SDK.Command-line.Tools">***Android SDK Command-line Tools：***</font>目前的版本，需要在*setting*里面手动勾选安装；<font color="red">***安装以后会得到 sdkmanager***</font>；
-  
-    ![image-20240321035653738](./assets/image-20240321035653738.png)
+      ```shell
+      # 关闭所有iOS模拟器
+      xcrun simctl shutdown all
+      # 检查是否有iOS模拟器进程存在(存在即杀进程)
+      if pgrep -f 'Simulator' >/dev/null; then
+          # 如果有，则会杀死所有包含"Simulator"字符串的进程
+          pkill -f 'Simulator'
+          echo "iOS模拟器进程已终止"
+      else
+          echo "没有找到iOS模拟器进程"
+      fi
+      
+      open -a Simulator
+      ```
 
-    ![image-20240321040315072](./assets/image-20240321040315072.png)
-  
+    * 如果是通过[***VSCode***](https://code.visualstudio.com/) ，那么只需要进行设备关联即可以唤起模拟器设备；
+
+      ![image-20240321041753483](./assets/image-20240321041753483.png)
+
+  * ***Android***模拟器：运行环境是**Android Studio**。下载完成此IDE以后，需要打开**Android Studio**，IDE会自动安装***Android.SDK***
+
+    * ###### <font id="Android.SDK.Command-line.Tools">***Android SDK Command-line Tools：***</font>目前的版本，需要在*setting*里面手动勾选安装；<font color="red">***安装以后会得到 sdkmanager***</font>；
+
+      ![image-20240321035653738](./assets/image-20240321035653738.png)
+
+      ![image-20240321040315072](./assets/image-20240321040315072.png)
+
     * 终端获取***Android.SDK***的（默认）绝对路径，为：*/Users/jobs/Library/Android/sdk*
-  
-    ```shell
-    ➜  Desktop whoami           
-    jobs
-    ➜  Desktop /Users/jobs/Library/Android/sdk
-    ➜  sdk 
-    ```
-  
+
+      ```shell
+      ➜  Desktop whoami           
+      jobs
+      ➜  Desktop /Users/jobs/Library/Android/sdk
+      ➜  sdk 
+      ```
+
     * 配置***Android***环境 [***见上文***](# 在*.bash_profile*文件里面，添加如下的环境变量；  )；
-    * 关联***Android.SDK***到Dart.Flutter；
-  
-    ```shell
-    ➜  Desktop flutter config --android-sdk /Users/jobs/Library/Android/sdk
-    Setting "android-sdk" value to "/Users/jobs/Library/Android/sdk".
-    
-    You may need to restart any open editors for them to read new settings.
-    ```
-  
-    * ***Android***授权：需要在有[***sdkmanager***](#Android.SDK.Command-line.Tools)的基础上，方能正常执行；
-  
-    ```shell
-    flutter doctor --android-licenses
-    
-    ➜  Desktop flutter doctor --android-licenses
-    [=======================================] 100% Computing updates...             
-    5 of 6 SDK package licenses not accepted.
-    Review licenses that have not been accepted (y/N)? y
-    
-    1/5: License android-googletv-license:
-    ---------------------------------------
-    ...... 此处省略很多字......
-    ---------------------------------------
-    Accept? (y/N): y
-    All SDK package licenses accepted
-    ```
-  
+
+    * 关联***Android.SDK***到Dart.Flutter
+
+      ```shell
+      ➜  Desktop flutter config --android-sdk /Users/jobs/Library/Android/sdk
+      Setting "android-sdk" value to "/Users/jobs/Library/Android/sdk".
+      
+      You may need to restart any open editors for them to read new settings.
+      ```
+
+    * ***Android***授权：需要在有[***sdkmanager***](#Android.SDK.Command-line.Tools)的基础上，方能正常执行
+
+      ```shell
+      flutter doctor --android-licenses
+      
+      ➜  Desktop flutter doctor --android-licenses
+      [=======================================] 100% Computing updates...             
+      5 of 6 SDK package licenses not accepted.
+      Review licenses that have not been accepted (y/N)? y
+      
+      1/5: License android-googletv-license:
+      ---------------------------------------
+      ...... 此处省略很多字......
+      ---------------------------------------
+      Accept? (y/N): y
+      All SDK package licenses accepted
+      ```
+
   * ***iOS***真机：需要用***xcode***打开**Runner.xcworkspace**，选择一个*Team* <font color="red">**真机需要签名**</font>；
-  
+
   * ***Android***真机：同理，略
-  
+
   * ***PC***浏览器：同理，略
 
-## <font color="red" id="运行Dart.Flutter工程">***❤️运行Dart.Flutter工程***</font>
+## <font color="red" id="运行Dart.Flutter工程">***运行Dart.Flutter工程***</font>
 
 * 第一次运行会有编译器的自动配置，请耐心等待；
 
@@ -760,11 +819,11 @@ Waiting for another flutter command to release the startup lock...
 
   * 如果`*.dart`文件里面不包含main函数，则只会有一个运行按钮
 
-  ![image-20240514144938293](./assets/image-20240514144938293.png)
+    ![image-20240514144938293](./assets/image-20240514144938293.png)
 
   * 只有当`*.dart`文件里面包含main函数，即：`void main()`，[**VSCode的运行按钮才会出现默认的3种菜单选项**](#VSCode的运行按钮有3种菜单选项)
 
-  ![image-20240514145037022](./assets/image-20240514145037022.png)
+    ![image-20240514145037022](./assets/image-20240514145037022.png)
 
 * 如果，当前激活的页面不是`*.dart`，那么只能使用MacOS终端命令行工具：运行`flutter run`。当然也可以直接终端进入工程根目录去运行`flutter run`
 
@@ -942,7 +1001,7 @@ Waiting for another flutter command to release the startup lock...
   
   * 和iOS不同的是，第三方包并未出现在本工程路径下，而是统一在本地目录下进行管理，如下👇🏻
   
-  ![image-20240519220616004](./assets/image-20240519220616004.png)
+    ![image-20240519220616004](./assets/image-20240519220616004.png)
   
   ***flutter pub outdated*** 用于修复 Flutter 的包缓存。它会检查当前的包缓存目录，并重新下载所有已缓存的包。这个命令在以下情况下特别有用：
   
@@ -1089,27 +1148,30 @@ Waiting for another flutter command to release the startup lock...
 * 相关阅读
   * [**Flutter-DevTools**](https://juejin.cn/post/7103893428999553055)
   * [**前端调试（三） ---- vscode devtools**](https://juejin.cn/post/7156477553279467534)
+  
 * [**只支持模拟器或者本机浏览器运行项目**](#ios-simulator)，不支持移动设备的真机
+
 * IDE内部打开**Widget Inspector**
+  
+  ![image-20240516183238144](./assets/image-20240516183238144.png)
+  
+  ![image-20240516182951273](./assets/image-20240516182951273.png)
+  
   * **暂无按钮进行启动**
   * `command` + `shift`+ `p`唤起输入：Flutter：open devtools widget inspector page
-
-![image-20240516183238144](./assets/image-20240516183238144.png)
-
-![image-20240516182951273](./assets/image-20240516182951273.png)
 
 * 本机浏览器打开**Widget Inspector**
   
   * 只是很粗暴的打开，不知道是否正确关联项目工程和DevTools
   
-  ![image-20240512194915962](./assets/image-20240512194915962.png)
+    ![image-20240512194915962](./assets/image-20240512194915962.png)
   
     * [**👉🏻点击进入DevTools 的主页👈🏻**](http://localhost:9100/home)
     * **MacOS.VSCode** => `shift`+`command`+p => 输入`Open DevTools`
   
   * [**iOS模拟器运行的前提下，可以正确打开DevTools**](#ios-simulator)
   
-  ![image-20240513050237967](./assets/image-20240513050237967.png)
+    ![image-20240513050237967](./assets/image-20240513050237967.png)
 
 ### ***VSCode.配置计划任务***
 
@@ -1125,28 +1187,29 @@ Waiting for another flutter command to release the startup lock...
 
 * 在打开的 `tasks.json` 文件中，可以创建一个自定义任务。**并保存**。例如：
 
-![image-20240520013412500](./assets/image-20240520013412500.png)
+  ![image-20240520013412500](./assets/image-20240520013412500.png)
 
 * 在 `tasks.json` 中定义的任务并不会直接在[***VSCode***](https://code.visualstudio.com/) 中执行，而是在“任务”菜单中执行的
   * 打开[***VSCode***](https://code.visualstudio.com/) –> `command+shift+p` –> 输入`Tasks: Run Task`
   
-  ![image-20240520013617974](./assets/image-20240520013617974.png)
+    ![image-20240520013617974](./assets/image-20240520013617974.png)
+    
+    ![image-20240520013710038](./assets/image-20240520013710038.png)
+    
+    ![image-20240520013815448](./assets/image-20240520013815448.png)
   
-  ![image-20240520013710038](./assets/image-20240520013710038.png)
-  
-  ![image-20240520013815448](./assets/image-20240520013815448.png)
 
 ### <font id="launch.json">`launch.json`</font>
 
 * 文件位于项目根目录下`.vscode`这个隐藏文件夹里面。（项目初始是没有的，可以手动建立，也可以IDE自动建立）
 
-![image-20240520020701941](./assets/image-20240520020701941.png)
+  ![image-20240520020701941](./assets/image-20240520020701941.png)
 
 * `launch.json`
 
   * 文件位于项目根目录`.vscode`隐藏文件夹下。该文件在项目创立之初并不会自动创建。可以手动建立，亦可以IDE建立
 
-  ![image-20240520020701941](./assets/image-20240520020701941.png)
+    ![image-20240520020701941](./assets/image-20240520020701941.png)
   
   * 编辑`launch.json`文件：
   
@@ -1176,7 +1239,8 @@ Waiting for another flutter command to release the startup lock...
 
 * 启用方式：
 
-![image-20240520021415650](./assets/image-20240520021415650.png)
+  ![image-20240520021415650](./assets/image-20240520021415650.png)
+
 ## 一些报错的处理经验记录
 
 * <font color="red">***ERROR:flutter/shell/platform/darwin/graphics/FlutterDarwinContextMetalImpeller.mm(42)] Using the Impeller rendering backend.***</font> 
