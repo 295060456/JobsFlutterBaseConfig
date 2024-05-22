@@ -151,6 +151,132 @@ Waiting for another flutter command to release the startup lock...
       [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
       ```
 
+### Gradle For Android in MacOS
+
+* [**Gradle**](https://gradle.org/releases/)， 是一个开源的自动化构建工具，用于构建和管理软件项目。它具有灵活、强大和高度可定制的特性，被广泛用于构建 Java、Groovy、Kotlin、C/C++、Swift、JavaScript和其他 JVM 相关的项目，包括 Android 应用程序。
+
+* ```ruby
+  # 配置 Gradle 环境变量
+  export PATH="/Users/admin/Documents/Gradle/gradle-8.7/bin:$PATH"
+  ```
+
+  ![image-20240522152909973](/Users/admin/Library/Application Support/typora-user-images/image-20240522152909973.png)
+
+  * `$PATH`的意思：能够保留原有的 `PATH` 设置，并将新路径添加到原有的 `PATH`前面
+
+* 验证
+
+  ```shell
+  Last login: Wed May 22 15:25:23 on ttys007
+  ➜  Desktop gradle -v
+  
+  Welcome to Gradle 8.7!
+  
+  Here are the highlights of this release:
+   - Compiling and testing with Java 22
+   - Cacheable Groovy script compilation
+   - New methods in lazy collection properties
+  
+  For more details see https://docs.gradle.org/8.7/release-notes.html
+  
+  
+  ------------------------------------------------------------
+  Gradle 8.7
+  ------------------------------------------------------------
+  
+  Build time:   2024-03-22 15:52:46 UTC
+  Revision:     650af14d7653aa949fce5e886e685efc9cf97c10
+  
+  Kotlin:       1.9.22
+  Groovy:       3.0.17
+  Ant:          Apache Ant(TM) version 1.10.13 compiled on January 4 2023
+  JVM:          18.0.2 (Amazon.com Inc. 18.0.2+9-FR)
+  OS:           Mac OS X 14.5 x86_64
+  ```
+
+* `gradlew` 文件是 Gradle Wrapper 的<font color=blue>脚本文件</font>，**用于在没有预先安装 Gradle 的情况下执行 Gradle 构建**
+
+  * Gradle Wrapper 是一个用于管理项目 Gradle 版本的工具，它允许您在项目中捆绑特定版本的 Gradle，而无需手动安装 Gradle 或依赖于系统中已安装的 Gradle 版本
+  * `gradlew` 文件是 Gradle Wrapper 的<font color=red>**入口点**</font>，通过它可以启动 Gradle 构建过程
+  
+* `gradlew.bat`文件 ，是用于Windows平台的<font color=blue>脚本文件</font>， 效果等同于`gradlew`。确保了Gradle Wrapper 的跨平台。
+
+* `settings.gradle` 文件是一个 Gradle 构建<font color=blue>脚本</font>，用于配置 Gradle 项目的各种设置和属性
+
+  * 位于 Gradle 项目的根目录下，通常用于定义项目的子项目、包含的模块、项目名称以及其他全局配置
+  
+* `local.properties` 文件通常用于存储与本地开发环境相关的属性和配置，特别是 Android 应用项目中
+
+  * 这个文件一般包含了一些敏感信息或者与个人开发环境相关的配置。包括但不仅限于：SDK路径、密钥、密码等
+  * 它通常位于 Android 项目的根目录下，但<font color=red>**不会被版本控制系统（例如 Git）跟踪**</font>
+  
+* `gradle-wrapper.properties` 文件是 Gradle Wrapper 的配置文件之一
+
+  * Gradle Wrapper 是 Gradle 构建工具的一部分，**它允许在没有预先安装 Gradle 的情况下执行 Gradle 构建**
+  * 该文件通常包含有关 Gradle 版本、下载地址和其他相关配置的信息
+  * Gradle Wrapper 的主要目的是确保项目的构建环境是可重现的
+  * 通过使用 Gradle Wrapper，可以将特定版本的 Gradle 与项目一起捆绑，而无需手动安装 Gradle 或者依赖于系统中已安装的 Gradle 版本
+  * 这样做可以确保团队成员在不同的开发环境中使用相同的 Gradle 版本，并且可以避免由于 Gradle 版本差异导致的构建问题
+
+* `gradle.properties` 文件是 Gradle 构建工具的全局配置文件之一
+  
+  ```
+  # 这行设置了 Gradle 进程的 JVM 参数
+  # -Xmx4608M 表示将 Gradle 进程的最大堆内存限制设置为 4608MB，这样可以为 Gradle 分配更多的内存，有助于处理大型项目
+  org.gradle.jvmargs=-Xmx4608M
+  
+  # android.useAndroidX=true: 这行设置了 Android 项目是否使用 AndroidX 库
+  # 将其设置为 true 表示启用 AndroidX 库，AndroidX 是用于替代传统支持库的新库体系
+  android.useAndroidX=true
+  
+  # android.enableJetifier=true: 这行设置了是否启用 Jetifier。Jetifier 是一个工具，用于将第三方库的旧版支持库依赖转换为 AndroidX 库的依赖，以便与新版 AndroidX 库兼容
+  android.enableJetifier=true
+  
+  # org.gradle.daemon=false: 这行设置了 Gradle 守护进程（daemon）是否启用
+  # 将其设置为 false 表示禁用 Gradle 守护进程，这意味着每次运行 Gradle 命令时都会启动新的 Gradle 进程，而不是重用现有的守护进程
+  org.gradle.daemon=false
+  
+  # 启用并行构建，加速构建过程
+  org.gradle.parallel=true
+  
+  # 启用配置按需，在构建时仅配置相关的项目，以加快构建速度
+  org.gradle.configureondemand=true
+  
+  # 启用构建缓存，以便在重复构建时重用已编译的输出。
+  org.gradle.caching=true
+  
+  # 配置自定义的 Maven 仓库地址
+  org.gradle.maven.repo=http://example.com/maven-repo
+  
+  # 设置 Gradle 日志级别，例如 quiet、info、debug 等
+  org.gradle.logging.level=info
+  
+  # 设置 Gradle 控制台日志输出格式，例如 plain、rich 等
+  org.gradle.console=plain
+  
+  # 定义支持库版本，然后在构建脚本中引用，例如 implementation "com.android.support:appcompat-v7:$version.support_lib"
+  version.support_lib=28.0.0
+  
+  # 配置 Kotlin 代码样式，例如 official、custom 等
+  kotlin.code.style=official
+  
+  # 配置 HTTP 代理主机
+  systemProp.http.proxyHost=proxy.example.com
+  
+  # 配置 HTTP 代理端口
+  systemProp.http.proxyPort=8080
+  
+  # 定义自定义属性，然后在构建脚本中引用
+  myCustomProperty=myValue
+  ```
+  * 它用于设置 Gradle 构建过程中的各种属性和选项
+  * 该文件通常位于项目的根目录下，也可以放在用户的 Gradle 用户目录下，以覆盖全局设置
+  * **构建属性设置**：可以设置 Gradle 构建过程中使用的属性，例如构建类型（debug、release）、版本号等
+  * **代理设置**：如果在使用 Gradle 时需要通过代理连接到外部资源，可以在这里设置代理的主机、端口和凭据
+  * **依赖版本控制**：可以在这里指定默认的依赖库版本，以便在构建文件中引用时使用
+  * **性能优化**：可以通过设置一些属性来优化 Gradle 的性能，例如并行构建、缓存设置等
+  * **插件配置**：某些 Gradle 插件可能需要一些配置参数，可以在这里进行配置
+
 ### 配置文件⚠️
 
 * <font color=red id="MacOS.配置文件">**系统一般就下面👇这三个文件进行配置引导**</font>
