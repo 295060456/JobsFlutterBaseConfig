@@ -162,7 +162,7 @@ Waiting for another flutter command to release the startup lock...
 
 * ```ruby
   # 配置 Gradle 环境变量
-  export PATH="/Users/admin/Documents/Gradle/gradle-8.7/bin:$PATH"
+  export PATH="/Users/$(whoami)/Documents/Gradle/gradle-8.7/bin:$PATH"
   ```
 
   ![image-20240522182407986](./assets/image-20240522182407986.png)
@@ -303,34 +303,62 @@ Waiting for another flutter command to release the startup lock...
 * 配置  <font color=red id=".bash_profile">*`.bash_profile`*</font> 文件
 
     ```ruby
+    # 配置 Rbenv.ruby 环境变量
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    # 初始化 rbenv
+    eval "$(rbenv init -)"
+    
+    # 配置 Homebrew.ruby 环境变量
+    export PATH="/usr/local/opt/ruby/bin:$PATH"
+    
+    # 配置 VSCode 环境变量
+    export PATH="$PATH":/usr/local/bin
+    export PATH="$PATH":/usr/local/bin/code
+    
     # 配置Flutter环境
     # 这里的路径即为Dart.Flutter.SDK名下的为bin目录（主要取决于你下载的SDK的绝对路径）
-    export PATH=/Users/jobs/Documents/GitHub/Flutter.SDK/flutter/bin:$PATH
+    export PATH=/Users/$(whoami)/Documents/GitHub/Flutter.SDK/flutter/bin:$PATH
     #【相关阅读：Flutter切换源】https://juejin.cn/post/7204285137047257148
     # 防止域名在中国大陆互联网环境下的被屏蔽
     # export PUB_HOSTED_URL=https://pub.flutter-io.cn # 告诉了 Dart.Flutter 和 Dart 的包管理器 pub 在执行 pub get 或 pub upgrade 命令时使用备用仓库而不是默认的官方仓库。
     # Flutter官方正版源（温馨提示：海外IP访问大陆源，不开VPN会拉取失败）
     export PUB_HOSTED_URL=https://pub.dartlang.org
     # FLUTTER_STORAGE_BASE_URL 告诉了 Dart.Flutter SDK 在需要下载二进制文件或工具时从备用存储库获取，而不是从默认的 Google 存储库获取。
-    # export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn # Flutter中国（七牛云）
-    export FLUTTER_STORAGE_BASE_URL=https://storage.googleapis.com # Flutter官方的 Google Cloud 存储库地址
-    
-    # 配置Android环境
-    export ANDROID_HOME=/Users/jobs/Library/Android/sdk
-    export PATH=${PATH}:${ANDROID_HOME}/platform-tools
-    export PATH=${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin
-    
-    # 每次打开Mac终端的时候，默认定位📌当前路径为系统桌面
-    #【❤️细节处理❤️】cd ~/Desktop 这么写的话，虽然新开的Mac终端定位📌于系统桌面，但是VSCode这个IDE里面的终端路径定位📌就不是工程当前目录
-    cd ./Desktop 
-    ```
-
+  # export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn # Flutter中国（七牛云）
+  export FLUTTER_STORAGE_BASE_URL=https://storage.googleapis.com # Flutter官方的 Google Cloud 存储库地址
+  
+  # 配置Android环境
+  export ANDROID_HOME=/Users/$(whoami)/Library/Android/sdk
+  export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+  export PATH=${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin
+  export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH # Android 模拟器
+  
+  # 配置 FVM 环境变量
+  export PATH="$PATH":"$HOME/.pub-cache/bin"
+  
+  # 配置 JDK 环境变量
+  # export JAVA_HOME=/Users/$(whoami)/Library/Java/JavaVirtualMachines/corretto-20.0.2.1/Contents/Home
+  export JAVA_HOME=/Users/$(whoami)/Library/Java/JavaVirtualMachines/corretto-18.0.2/Contents/Home
+  export PATH=$JAVA_HOME/bin:$PATH
+  
+  # 配置 OpenJDK 环境变量
+  export SDKMAN_DIR="$HOME/.sdkman"
+  [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+  
+  # 配置 Gradle 环境变量
+  export PATH="/Users/$(whoami)/Documents/Gradle/gradle-8.7/bin:$PATH"
+  
+  # 每次打开Mac终端的时候，默认定位📌当前路径为系统桌面
+  #【❤️细节处理❤️】cd ~/Desktop 这么写的话，虽然新开的Mac终端定位📌于系统桌面，但是VSCode这个IDE里面的终端路径定位📌就不是工程当前目录
+  cd ./Desktop 
+  ```
+  
   * <font color=red>**Flutter源（依据具体的情况，比如修改配置文件：`.bash_profile`）**</font>
-
+  
     * 相关阅读：[**Flutter切换源**](https://juejin.cn/post/7204285137047257148)
-
+  
     * <font id="Flutter源">*打印系统当前所使用的Flutter源*</font>
-
+  
       ```shell
       Last login: Thu May 16 01:55:41 on ttys000
       ➜  Desktop echo $FLUTTER_STORAGE_BASE_URL
@@ -340,15 +368,15 @@ Waiting for another flutter command to release the startup lock...
       
       https://pub.dartlang.org
       ```
-
+  
     * [**Flutter官方正版源**](https://pub.dartlang.org)
-
+  
       |   提供商    |    **PUB_HOSTED_URL**    |         **FLUTTER_STORAGE_BASE_URL**         |
       | :---------: | :----------------------: | :------------------------------------------: |
       | Flutter官方 | https://pub.dartlang.org | https://storage.googleapis.com/flutter_infra |
-
+  
     * [**Flutter中国大陆源**](https://pub.flutter-io.cn)
-
+  
       |        提供商         |          **PUB_HOSTED_URL**           |     **FLUTTER_STORAGE_BASE_URL**     |
       | :-------------------: | :-----------------------------------: | :----------------------------------: |
       |       上海交大        |      mirror.sjtu.edu.cn/dart-pub      |          mirror.sjtu.edu.cn          |
@@ -357,14 +385,14 @@ Waiting for another flutter command to release the startup lock...
       |         CNNIC         |       mirrors.cnnic.cn/dart-pub       |       mirrors.cnnic.cn/flutter       |
       | Flutter中国（七牛云） |           pub.flutter-io.cn           |        storage.flutter-io.cn         |
       |        腾讯云         |  mirrors.cloud.tencent.com/dart-pub   |  mirrors.cloud.tencent.com/flutter   |
-
+  
   * 保存配置，并且使之生效
-
+  
     ```shell
     ➜  Desktop cd ..               
     ➜  ~ source .bash_profile
     ```
-
+  
   * 关于文件夹：`flutter/bin/cache`
     * 这个文件夹在[**Github.FlutterSDK**](https://github.com/flutter/flutter)里面是**不存在的**，而是需要根据实际的设备情况来进行灵活（自动）下载的；
     
