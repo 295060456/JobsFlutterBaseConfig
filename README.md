@@ -1562,7 +1562,7 @@ Process 'command '/Users/jobs/Documents/GitHub/JobsFlutterBaseConfig/jobs_flutte
     
     ![image-20240510135830224](./assets/image-20240510135830224.png)
     
-    ![image-20240510135840938](/image-20240510135840938.png)
+    ![image-20240510135840938](./assets/image-20240510135840938.png)
   
 * Fluttter工程文件夹下面.ios子目录.Podfile无法兼容以下语句，将会导致编译不通过
 
