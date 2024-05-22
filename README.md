@@ -170,7 +170,7 @@ Waiting for another flutter command to release the startup lock...
   export PATH="/Users/admin/Documents/Gradle/gradle-8.7/bin:$PATH"
   ```
 
-  ![image-20240522152909973](/Users/admin/Library/Application Support/typora-user-images/image-20240522152909973.png)
+  ![image-20240522182407986](/image-20240522182407986.png)
 
   * `$PATH`的意思：能够保留原有的 `PATH` 设置，并将新路径添加到原有的 `PATH`前面
 
@@ -373,7 +373,7 @@ Waiting for another flutter command to release the startup lock...
   * 关于文件夹：`flutter/bin/cache`
     * 这个文件夹在[**Github.FlutterSDK**](https://github.com/flutter/flutter)里面是**不存在的**，而是需要根据实际的设备情况来进行灵活（自动）下载的；
     
-      ![image-20240516084202143](./assets/image-20240516084202143.png)
+      ![image-20240522182606804](/image-20240522182606804.png)
     
     * <font color=red>**即，[当前源](#Flutter源)是中国大陆 + 此时系统配置的`FLUTTER_STORAGE_BASE_URL`为Flutter官方源 ==> 此时依旧按照中国大陆源进行下载数据；**</font>
     
@@ -406,9 +406,9 @@ Waiting for another flutter command to release the startup lock...
   
     * 方式1：手动关联SDK，如下图所示👇🏻：<font color="red">编译过后，用 *Command + s* 进行保存</font>
     
-      ![image-20240321153420881](./assets/image-20240321153420881.png)
+      ![image-20240321153420881](/image-20240321153420881.png)
     
-      ![image-20240321153739756](./assets/image-20240321153739756.png)
+      ![image-20240321153739756](/image-20240321153739756.png)
     
     * 方式2：自动侦测SDK。在[***VSCode***](https://code.visualstudio.com/)里面，使用快捷键：*`Shift + command + p `* 唤起命令输入弹出框；输入：*Flutter:Change SDK*
     
@@ -420,7 +420,7 @@ Waiting for another flutter command to release the startup lock...
 
 ### 利用FVM对项目Flutter的版本进行切换♻️
 
-![image-20240520193213663](./assets/image-20240520193213663.png)
+![image-20240520193213663](/image-20240520193213663.png)
 
 * 相关阅读
 
@@ -744,15 +744,15 @@ Waiting for another flutter command to release the startup lock...
 
     * 必须要选定模拟器型号以后，***生成一个模拟器实例***以后（会出现一个设备ID），才可以正确关联。在***XCode***里面删除这个模拟器设备（实例销毁），虽然在***VSCode***里面有设备ID指向，但是关联会运行失败；
 
-    ![image-20240320211238339](./assets/image-20240320211238339.png)
+    ![image-20240320211238339](/image-20240320211238339.png)
 
-    ![image-20240320212703635](./assets/image-20240320212703635.png)
+    ![image-20240320212703635](/image-20240320212703635.png)
 
-    ![image-20240320212829130](./assets/image-20240320212829130.png)
+    ![image-20240320212829130](/image-20240320212829130.png)
 
     * <font color="red">必须要安装iOS的SDK，否则只能链接设备，无法编译。Android同理</font>；
 
-    ![image-20240320214344707](./assets/image-20240320214344707.png)
+    ![image-20240320214344707](/image-20240320214344707.png)
 
     * 如果使用终端运行Dart.Flutter代码，则需要额外的，优先唤起iOS模拟器<font color=red>**（先关闭再开启，否则可能会无法唤起）**</font>
 
@@ -773,15 +773,15 @@ Waiting for another flutter command to release the startup lock...
 
     * 如果是通过[***VSCode***](https://code.visualstudio.com/) ，那么只需要进行设备关联即可以唤起模拟器设备；
 
-      ![image-20240321041753483](./assets/image-20240321041753483.png)
+      ![image-20240321041753483](/image-20240321041753483.png)
 
   * ***Android***模拟器：运行环境是**Android Studio**。下载完成此IDE以后，需要打开**Android Studio**，IDE会自动安装***Android.SDK***
 
     * ###### <font id="Android.SDK.Command-line.Tools">***Android SDK Command-line Tools：***</font>目前的版本，需要在*setting*里面手动勾选安装；<font color="red">***安装以后会得到 sdkmanager***</font>；
 
-      ![image-20240321035653738](./assets/image-20240321035653738.png)
+      ![image-20240321035653738](/image-20240321035653738.png)
 
-      ![image-20240321040315072](./assets/image-20240321040315072.png)
+      ![image-20240321040315072](/image-20240321040315072.png)
 
     * 终端获取***Android.SDK***的（默认）绝对路径，为：*/Users/jobs/Library/Android/sdk*
 
@@ -956,11 +956,11 @@ Waiting for another flutter command to release the startup lock...
 
   * 如果`*.dart`文件里面不包含main函数，则只会有一个运行按钮
 
-    ![image-20240514144938293](./assets/image-20240514144938293.png)
+    ![image-20240514144938293](/image-20240514144938293.png)
 
   * 只有当`*.dart`文件里面包含main函数，即：`void main()`，[**VSCode的运行按钮才会出现默认的3种菜单选项**](#VSCode的运行按钮有3种菜单选项)
 
-    ![image-20240514145037022](./assets/image-20240514145037022.png)
+    ![image-20240514145037022](/image-20240514145037022.png)
 
 * 如果，当前激活的页面不是`*.dart`，那么只能使用MacOS终端命令行工具：运行`flutter run`。当然也可以直接终端进入工程根目录去运行`flutter run`
 
@@ -970,7 +970,7 @@ Waiting for another flutter command to release the startup lock...
 
   * 此时Flutter工程的生命周期由xcode接管。即，**此时[*VSCode*](https://code.visualstudio.com/)不会出现停止代码运行的工具栏**；
 
-  ![image-20240516181142225](./assets/image-20240516181142225.png)
+  ![image-20240516181142225](/image-20240516181142225.png)
   
   * 关闭xcode，即终止程序运行，且后续在设备上无法点击打开；
   * <u>如果是真机运行，则没有办法使用[**Flutter.DevTools**](#DevTools)</u>
@@ -1050,13 +1050,13 @@ Waiting for another flutter command to release the startup lock...
     flutter: 当前系统语言环境:[zh_CN]
     ```
     
-    ![image-20240512201712757](./assets/image-20240512201712757.png)
+    ![image-20240512201712757](/image-20240512201712757.png)
     
 * 编译器（[***VSCode***](https://code.visualstudio.com/) ）有3种方式运行
 
   * `run code`，真机和iOS模拟器均报错：<font color="red">***Error: Dart library 'dart:ui' is not available on this platform.***</font>
 
-    ![image-20240503165519511](./assets/image-20240503165519511.png)
+    ![image-20240503165519511](/image-20240503165519511.png)
 
   * <font color="red">`Start Debugging`</font>，采用这种方式运行Flutter代码，就等于直接在项目`ios`目录下，用xcode运行Flutter项目里面关于iOS的代码部分。真机可能会运行失败（iOS 版本 < 14 会成功），<font color="red">但是iOS模拟器运行成功</font>
 
@@ -1138,7 +1138,7 @@ Waiting for another flutter command to release the startup lock...
   
   * 和iOS不同的是，第三方包并未出现在本工程路径下，而是统一在本地目录下进行管理，如下👇🏻
   
-    ![image-20240519220616004](./assets/image-20240519220616004.png)
+    ![image-20240519220616004](/image-20240519220616004.png)
   
   ***flutter pub outdated*** 用于修复 Flutter 的包缓存。它会检查当前的包缓存目录，并重新下载所有已缓存的包。这个命令在以下情况下特别有用：
   
@@ -1290,9 +1290,9 @@ Waiting for another flutter command to release the startup lock...
 
 * IDE内部打开**Widget Inspector**
   
-  ![image-20240516183238144](./assets/image-20240516183238144.png)
+  ![image-20240516183238144](/image-20240516183238144.png)
   
-  ![image-20240516182951273](./assets/image-20240516182951273.png)
+  ![image-20240516182951273](/image-20240516182951273.png)
   
   * **暂无按钮进行启动**
   * `command` + `shift`+ `p`唤起输入：Flutter：open devtools widget inspector page
@@ -1301,14 +1301,14 @@ Waiting for another flutter command to release the startup lock...
   
   * 只是很粗暴的打开，不知道是否正确关联项目工程和DevTools
   
-    ![image-20240512194915962](./assets/image-20240512194915962.png)
+    ![image-20240512194915962](/image-20240512194915962.png)
   
     * [**👉🏻点击进入DevTools 的主页👈🏻**](http://localhost:9100/home)
     * **MacOS.VSCode** => `shift`+`command`+p => 输入`Open DevTools`
   
   * [**iOS模拟器运行的前提下，可以正确打开DevTools**](#ios-simulator)
   
-    ![image-20240513050237967](./assets/image-20240513050237967.png)
+    ![image-20240513050237967](/image-20240513050237967.png)
 
 ### ***VSCode.配置计划任务***
 
@@ -1320,33 +1320,33 @@ Waiting for another flutter command to release the startup lock...
 
 * 在弹出的菜单中，选择 `Others`
 
-![image-20240520012955020](./assets/image-20240520012955020.png)
+![image-20240520012955020](/image-20240520012955020.png)
 
 * 在打开的 `tasks.json` 文件中，可以创建一个自定义任务。**并保存**。例如：
 
-  ![image-20240520013412500](./assets/image-20240520013412500.png)
+  ![image-20240520013412500](/image-20240520013412500.png)
 
 * 在 `tasks.json` 中定义的任务并不会直接在[***VSCode***](https://code.visualstudio.com/) 中执行，而是在“任务”菜单中执行的
   * 打开[***VSCode***](https://code.visualstudio.com/) –> `command+shift+p` –> 输入`Tasks: Run Task`
   
-    ![image-20240520013617974](./assets/image-20240520013617974.png)
+    ![image-20240520013617974](/image-20240520013617974.png)
     
-    ![image-20240520013710038](./assets/image-20240520013710038.png)
+    ![image-20240520013710038](/image-20240520013710038.png)
     
-    ![image-20240520013815448](./assets/image-20240520013815448.png)
+    ![image-20240520013815448](/image-20240520013815448.png)
   
 
 ### <font id="launch.json">`launch.json`</font>
 
 * 文件位于项目根目录下`.vscode`这个隐藏文件夹里面。（项目初始是没有的，可以手动建立，也可以IDE自动建立）
 
-  ![image-20240520020701941](./assets/image-20240520020701941.png)
+  ![image-20240520020701941](/image-20240520020701941.png)
 
 * `launch.json`
 
   * 文件位于项目根目录`.vscode`隐藏文件夹下。该文件在项目创立之初并不会自动创建。可以手动建立，亦可以IDE建立
 
-    ![image-20240520020701941](./assets/image-20240520020701941.png)
+    ![image-20240520020701941](/image-20240520020701941.png)
   
   * 编辑`launch.json`文件：
   
@@ -1376,7 +1376,7 @@ Waiting for another flutter command to release the startup lock...
 
 * 启用方式：
 
-  ![image-20240520021415650](./assets/image-20240520021415650.png)
+  ![image-20240520021415650](/image-20240520021415650.png)
 
 ## 一些报错的处理经验记录
 
@@ -1563,11 +1563,11 @@ Process 'command '/Users/jobs/Documents/GitHub/JobsFlutterBaseConfig/jobs_flutte
   
     * 涉及到被修改的文件
     
-    ![image-20240510135813594](./assets/image-20240510135813594.png)
+    ![image-20240510135813594](/image-20240510135813594.png)
     
-    ![image-20240510135830224](./assets/image-20240510135830224.png)
+    ![image-20240510135830224](/image-20240510135830224.png)
     
-    ![image-20240510135840938](./assets/image-20240510135840938.png)
+    ![image-20240510135840938](/image-20240510135840938.png)
   
 * Fluttter工程文件夹下面.ios子目录.Podfile无法兼容以下语句，将会导致编译不通过
 
@@ -1576,7 +1576,7 @@ Process 'command '/Users/jobs/Documents/GitHub/JobsFlutterBaseConfig/jobs_flutte
     :generate_multiple_pod_projects => true,
   ```
 
-  ![image-20240512124344220](./assets/image-20240512124344220.png)
+  ![image-20240512124344220](/image-20240512124344220.png)
 
 * <font color="red">***In iOS 14+ ,debug mode Flutter apps can only be launched from Flutter tooling,IDEs with Flutter Plugins or from Xcode.Alternatively,build in profile or release modes to enable launching from the Home Screen.***</font> 
 
@@ -1596,7 +1596,7 @@ Process 'command '/Users/jobs/Documents/GitHub/JobsFlutterBaseConfig/jobs_flutte
     flutter run --release
     ```
 
-    ![image-20240508200637056](./assets/image-20240508200637056.png)
+    ![image-20240508200637056](/image-20240508200637056.png)
 
 * <font color="red">***The supplied phased action failed with an exception.Could not create task ':generateLockfiles'. Process 'command '/Users/jobs/Documents/GitHub/JobsFlutterBaseConfig/jobs_flutter_base_config/android/gradlew'' finished with non-zero exit value 1***</font> 
   
