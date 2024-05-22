@@ -1,3 +1,8 @@
+---
+typora-root-url: ./assets
+typora-copy-images-to: ./assets
+---
+
 # jobs_flutter_base_config
 ## **前言**
 
@@ -90,6 +95,11 @@
 ```shell
 Waiting for another flutter command to release the startup lock...
 ```
+
+### Android Studio
+
+* [] ()
+* [**Android Studio 下载文件归档**](https://developer.android.com/studio/archive?hl=zh-cn)
 
 ### JavaSDK For Android in MacOS
 
@@ -482,7 +492,8 @@ Waiting for another flutter command to release the startup lock...
     fvm flutter --version
     ```
   * 用[**FVM**](https://fvm.app/)管理当前项目的Flutter.SDK版本的SDK路径：<font color=red>**在`.fvm`隐藏文件夹路径下**</font>
-![img](/Users/admin/Documents/Github/JobsFlutterBaseConfig/assets/image-20240521160033111.png)
+  
+    ![image-20240521160033111](/image-20240521160033111.png)
 
 * [**FVM**](https://fvm.app/)，一个Flutter 版本管理的工具
 
@@ -1369,6 +1380,10 @@ Waiting for another flutter command to release the startup lock...
 
 ## 一些报错的处理经验记录
 
+* 老代码（或者多人开发的时候），Android Studio下载Android Api不对等，会导致一些异常。请平行Android SDK Platforms👇
+  
+    ![image-20240522181609191](/image-20240522181609191.png)
+    
 * <font color="red">***ERROR:flutter/shell/platform/darwin/graphics/FlutterDarwinContextMetalImpeller.mm(42)] Using the Impeller rendering backend.***</font> 
   
     * 在Dart.Flutter 3.10.0后iOS默认使用开始使用 Impeller，在 3.7 版本中 Impeller 就被引入用于未来替换 Skia 。Flutter 团队面对 Skia 上越来越多的问题无法有效快速推进，所以走上了自研 Impeller 的道路。
