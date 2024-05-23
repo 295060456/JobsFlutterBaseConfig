@@ -2,21 +2,12 @@
 
 - [jobs\_flutter\_base\_config](#jobs_flutter_base_config)
   - [**前言**](#前言)
-    - [Android Studio](#android-studio)
-    - [JavaSDK For Android in MacOS](#javasdk-for-android-in-macos)
-    - [Gradle For Android in MacOS](#gradle-for-android-in-macos)
-- [配置 Gradle 环境变量](#配置-gradle-环境变量)
-    - [配置文件⚠️](#配置文件️)
-- [export FLUTTER\_STORAGE\_BASE\_URL=https://storage.flutter-io.cn # Flutter中国（七牛云）](#export-flutter_storage_base_urlhttpsstorageflutter-iocn--flutter中国七牛云)
-- [配置Android环境](#配置android环境)
-- [配置 FVM 环境变量](#配置-fvm-环境变量)
-- [配置 JDK 环境变量](#配置-jdk-环境变量)
-- [export JAVA\_HOME=/Users/$(whoami)/Library/Java/JavaVirtualMachines/corretto-20.0.2.1/Contents/Home](#export-java_homeuserswhoamilibraryjavajavavirtualmachinescorretto-20021contentshome)
-- [配置 OpenJDK 环境变量](#配置-openjdk-环境变量)
-- [配置 Gradle 环境变量](#配置-gradle-环境变量-1)
-- [每次打开Mac终端的时候，默认定位📌当前路径为系统桌面](#每次打开mac终端的时候默认定位当前路径为系统桌面)
-    - [关于xcode.iOS模拟器](#关于xcodeios模拟器)
-    - [关联运行设备](#关联运行设备)
+  - [Android Studio](#android-studio)
+  - [JavaSDK For Android in MacOS](#javasdk-for-android-in-macos)
+  - [Gradle For Android in MacOS](#gradle-for-android-in-macos)
+  - [配置文件](#配置文件)
+  - [关于xcode.iOS模拟器](#关于xcodeios模拟器)
+  - [关联运行设备](#关联运行设备)
   - [***运行Dart.Flutter工程***](#运行dartflutter工程)
   - [调试工具](#调试工具)
     - [***Dart.Flutter.DevTools***](#dartflutterdevtools)
@@ -117,12 +108,12 @@
 Waiting for another flutter command to release the startup lock...
 ```
 
-### Android Studio
+## Android Studio
 
 * [**Android Studio 下载最新款**](https://developer.android.com/studio?hl=zh-cn)
 * [**Android Studio 下载文件归档**](https://developer.android.com/studio/archive?hl=zh-cn)
 
-### JavaSDK For Android in MacOS
+## JavaSDK For Android in MacOS
 
 * 因为Android基于Java，在使用[**Android Studio**](https://developer.android.com/studio?gad_source=1&gclid=Cj0KCQjwjLGyBhCYARIsAPqTz1-nhemrLBKyuxMDS0L2xhHGvrNdfmH3N9GZcy97GcrwbpZuIiCQ_c4aAm14EALw_wcB&gclsrc=aw.ds&hl=zh-cn)作为IDE进行编辑项目的时候，可能会对项目环境存在有Java环境的依赖
 
@@ -182,7 +173,7 @@ Waiting for another flutter command to release the startup lock...
       [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
       ```
 
-### Gradle For Android in MacOS
+## Gradle For Android in MacOS
 
 * [**Gradle**](https://gradle.org/releases/)， 是一个开源的自动化构建工具，用于构建和管理软件项目。它具有灵活、强大和高度可定制的特性，被广泛用于构建 Java、Groovy、Kotlin、C/C++、Swift、JavaScript和其他 JVM 相关的项目，包括 Android 应用程序。
 
@@ -308,7 +299,7 @@ Waiting for another flutter command to release the startup lock...
   * **性能优化**：可以通过设置一些属性来优化 Gradle 的性能，例如并行构建、缓存设置等
   * **插件配置**：某些 Gradle 插件可能需要一些配置参数，可以在这里进行配置
 
-### 配置文件⚠️
+## <font id="配置文件">配置文件⚠️</font>
 
 * <font color=red id="MacOS.配置文件">**系统一般就下面👇这三个文件进行配置引导**</font>
 
@@ -445,7 +436,7 @@ Waiting for another flutter command to release the startup lock...
     • No issues found!
     ```
   
-### ***Dart.Flutter.SDK*** ↔️[***VSCode***](https://code.visualstudio.com/)和↔️***MacOS*** ![image-20240320205645750](./assets/image-20240320205645750.png)
+## ***Dart.Flutter.SDK*** ↔️[***VSCode***](https://code.visualstudio.com/)和↔️***MacOS*** ![image-20240320205645750](./assets/image-20240320205645750.png)
 
   * 可以直接去[***Flutter官网***](https://flutter.dev/)或者[***Flutter.GitHub***](https://github.com/flutter/flutter)地址下载以后，和编译器进行关联；
   
@@ -467,7 +458,7 @@ Waiting for another flutter command to release the startup lock...
     * 在命令输入弹出框输入命令***Flutter: New Project*** 新建Dart.Flutter工程（自定义工程文件路径）。此时如果没有下载或者成功关联***Dart.Flutter.SDK***将会出现提示；
     * ***Dart.Flutter.SDK***  <font color="red">自带Dart语言环境</font>；但这个Dart版本可能和系统上安装的Dart版本不一致。
 
-### 利用FVM对项目Flutter的版本进行切换♻️
+## 利用FVM对项目Flutter的版本进行切换♻️
 
 ![image-20240520193213663](./assets/image-20240520193213663.png)
 
@@ -756,7 +747,7 @@ Waiting for another flutter command to release the startup lock...
   * –> 输入`shell command` 
   * –> 点击提示`Shell Command: Install ‘code’ command in PATH`运行
 
-### 关于xcode.iOS模拟器
+## 关于xcode.iOS模拟器
 
 * [**关联运行设备**](# 关联运行设备)
 
@@ -780,7 +771,7 @@ Waiting for another flutter command to release the startup lock...
 
 * 对xcode关联的相关设备进行删除以后，在Flutter编译器（比如[***VSCode***](https://code.visualstudio.com/) ）里面，可能是没有同步的，还保存着上一个已经移除或者销毁的iOS模拟器指向（这个时候是无法成功唤起iOS模拟器的）。在选择编译器的时候，请注意检查模拟器的ID是否能够对得上；
 
-### <font id="关联运行设备">关联运行设备</font>
+## <font id="关联运行设备">关联运行设备</font>
 
   * iOS模拟器：[***Xcode下载模拟器报错***](https://blog.csdn.net/saw471/article/details/136560974)
 
