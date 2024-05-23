@@ -1,4 +1,30 @@
 # jobs_flutter_base_config
+
+- [jobs\_flutter\_base\_config](#jobs_flutter_base_config)
+  - [**前言**](#前言)
+    - [Android Studio](#android-studio)
+    - [JavaSDK For Android in MacOS](#javasdk-for-android-in-macos)
+    - [Gradle For Android in MacOS](#gradle-for-android-in-macos)
+- [配置 Gradle 环境变量](#配置-gradle-环境变量)
+    - [配置文件⚠️](#配置文件️)
+- [export FLUTTER\_STORAGE\_BASE\_URL=https://storage.flutter-io.cn # Flutter中国（七牛云）](#export-flutter_storage_base_urlhttpsstorageflutter-iocn--flutter中国七牛云)
+- [配置Android环境](#配置android环境)
+- [配置 FVM 环境变量](#配置-fvm-环境变量)
+- [配置 JDK 环境变量](#配置-jdk-环境变量)
+- [export JAVA\_HOME=/Users/$(whoami)/Library/Java/JavaVirtualMachines/corretto-20.0.2.1/Contents/Home](#export-java_homeuserswhoamilibraryjavajavavirtualmachinescorretto-20021contentshome)
+- [配置 OpenJDK 环境变量](#配置-openjdk-环境变量)
+- [配置 Gradle 环境变量](#配置-gradle-环境变量-1)
+- [每次打开Mac终端的时候，默认定位📌当前路径为系统桌面](#每次打开mac终端的时候默认定位当前路径为系统桌面)
+    - [关于xcode.iOS模拟器](#关于xcodeios模拟器)
+    - [关联运行设备](#关联运行设备)
+  - [***运行Dart.Flutter工程***](#运行dartflutter工程)
+  - [调试工具](#调试工具)
+    - [***Dart.Flutter.DevTools***](#dartflutterdevtools)
+    - [***VSCode.配置计划任务***](#vscode配置计划任务)
+    - [`launch.json`](#launchjson)
+  - [一些报错的处理经验记录](#一些报错的处理经验记录)
+  - [其他工具](#其他工具)
+
 ## **前言**
 
 * 每个项目工程里面都加入`双击运行.command`。方便启动项目
