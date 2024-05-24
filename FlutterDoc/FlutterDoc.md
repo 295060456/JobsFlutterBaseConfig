@@ -11,6 +11,7 @@
   - [***Dart.级联操作符***](#dart级联操作符)
   - [***Dart.调用C***](#dart调用c)
   - [***Dart***.***`part`***](#dartpart)
+  - [***Dart.范型***](#dart范型)
   - [***Dart.反射***](#dart反射)
   - [***Dart.mixin.with.on（混入）***](#dartmixinwithon混入)
   - [懒加载（Dart.Flutter vs Swift）](#懒加载dartflutter-vs-swift)GetxController
@@ -481,7 +482,38 @@ gcc -shared -o libexample.so example.c
   part of my_library;
   // 部分文件中的代码
   ```
+
+## ***Dart.范型***
+
+* `Future<T>` 确实是一个泛型类，其中 `T` 代表异步操作完成后返回的值的类型
+
+  对于 `Future<void>`，`void` 表示异步操作完成后不返回任何值。
+
+  这种用法在 Dart 中是被允许的，尽管 `void` 通常用于表示一个函数不返回值的类型
+
+  ```dart
+  Future<void> onLogout(
+  	// TODO
+  }
+  ```
+
+## ***Dart.注解***
+
+注解是一种元数据，可以应用于类、方法、变量等。用于提供额外的信息以及指导代码的行为。
+
+* `@override`: 用于标记方法重写了父类的方法。
+* `@immutable`: 用于标记类是不可变的，其属性也应该是不可变的。
+* `@required`: 用于标记方法参数是必需的，在调用时必须提供值。
+* `@optionalTypeArgs`: 用于在使用泛型时，标记类型参数是可选的。
+* `@factory`: 用于标记一个工厂构造函数。
+* `@visibleForTesting`: 用于标记一个成员是供测试代码访问的，但不是公共API。
+* `@mustCallSuper`：用于表示子类应该在覆盖父类中使用了 `@mustCallSuper` 注解的方法时，调用父类的相同方法。这通常用于确保在子类中重写方法时，仍然执行了父类的逻辑，以确保程序的正确性和完整性。
+* `@protected`: 用于标记一个成员是受保护的，在定义类的库以及子类中可见。
+* `@Deprecated`: 用于标记一个成员已经被弃用，在使用时应该考虑替代方案。
+* `@internal`: 用于标记一个成员是内部的，不应该被外部使用。
+
 ## ***Dart.反射***
+
 * 在Dart中，反射是指在***运行时***检查、访问和操作程序的结构，比如类、方法、字段等；
 * Dart提供了一组反射API，允许你**在运行时动态地获取有关程序结构的信息并与之交互**。这包括获取类的信息、调用对象的方法、访问字段等；
 * 反射在某些情况下非常有用，但在一般情况下，推荐**尽量避免使用反射**；
@@ -3783,14 +3815,23 @@ class Demo1 extends StatelessWidget {
 ```
 ### <font id="GetxController">***GetxController***</font>
 
-* ***GetxController***  是管理状态和逻辑的重要组件之一；
+* ***GetxController*** 是管理状态和逻辑的重要组件之一；
+* ***GetxController***通过提供响应式状态管理机制，可以完全取代*StatefulWidget*；
+* 分离状态逻辑与视图逻辑，***GetxController***提高了代码的可读性和可维护性；
 * ***GetxController*** 的生命周期：
-  * **创建（Instantiate）**：***GetxController*** 在第一次被调用或引用时被创建。通常是在页面或应用初始化时创建，可以通过 <font color="red">`Get.put()` </font>方法来手动创建。
-  * **初始化（Initialization）**：初始化过程发生在创建之后。在初始化过程中，可以执行一些必要的设置，例如获取数据、订阅流等。[**GetX**](#GetX) 提供了<font color="red"> `onInit()` </font>方法，可以在其中执行初始化逻辑。
-  * **侦听（Listening）**：一旦 ***GetxController*** 被初始化，它可以开始侦听状态的变化。这意味着可以在控制器中订阅数据源的变化，比如订阅流或者响应变化的数据。[**GetX**](#GetX)  提供了 <font color="red">`onReady()` </font>方法，可以在其中执行侦听相关的操作。
-  * **更新（Update）**：当控制器侦听到状态变化时，它会触发<font color="red">`update()`</font>更新。更新过程中，可以执行更新 UI 的操作，比如重新构建 *Widget* 或者执行其他视图相关的操作。
-  * **销毁（Disposal）**：当不再需要控制器时，需要手动将其销毁。在销毁时，可以释放资源，取消订阅等。[**GetX**](#GetX)  提供了 <font color="red">`dispose()` </font>方法，可以在其中执行销毁相关的操作。
-* ***GetxController*** 提供了三种使用方式： <font color="blue">使用`Get.put()`实例化类，使用对当下所有子路由可用（在整个应用程序的生命周期内保持存在）。后续也可以通过`Get.find()`找到对应的`GetxController `；</font><font color="gray">前提是没有显式地调用 `Get.delete()` 方法将其销毁为止</font>
+  * [**GetX**](#GetX).<font color="red">`put()` </font>：页面或应用初始化时创建。实例化类，使用对当下所有子路由可用（在整个应用程序的生命周期内保持存在）
+    * <font color="blue">在没有显式地调用 `Get.delete()` 方法将其销毁的大前提下，可以通过`Get.find()`找到对应的***GetxController***</font>
+    * `Get.delete()` 是 [**GetX**](#GetX) 中用于删除控制器实例的方法。它可以用于手动销毁控制器并释放资源，从而帮助管理应用程序的内存和性能。
+  * [**GetX**](#GetX).<font color="red">`onInit()` </font>：执行初始化逻辑（例如获取数据、订阅流等）
+  * [**GetX**](#GetX).<font color="red">`onReady()` </font>：侦听状态的变化
+  * [**GetX**](#GetX).<font color="red">`update()` </font>：UI更新
+  * [**GetX**](#GetX).<font color="red">`onClose()` </font>：控制器相关的清理工作（比如取消订阅、关闭流、释放资源等），在控制器被销毁之前会自动调用
+  * [**GetX**](#GetX).<font color="red">`dispose()` </font>：手动销毁控制器
+  * [**GetX**](#GetX).<font color="red">`onResumed()` </font>：当应用程序从后台返回前台时调用。通常在这个方法中可以执行一些恢复操作（比如：重新连接到后台服务、刷新数据等）
+  * [**GetX**](#GetX).<font color="red">`onPaused()` </font>：当应用程序从前台进入后台时调用。通常在这个方法中可以执行一些暂停操作（比如：暂停后台服务、保存数据等）
+  * [**GetX**](#GetX).<font color="red">`onInactive()` </font>：当应用程序失去焦点但没有完全进入后台时调用
+  * [**GetX**](#GetX).<font color="red">`onDetached()` </font>：当控制器从依赖注入系统中**移除**时调用，而不是销毁控制器本身
+* ***GetxController*** 提供了三种使用方式：
   * `Obx`：响应式状态管理，当数据源变化时，将**自动**执行刷新组件的方法
   * `GetX`：响应式状态管理，当数据源变化时，将**自动**执行刷新组件的方法
     <font color="red">***一般来说，对于大多数场景都是可以使用响应式变量。***</font>
