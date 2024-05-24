@@ -3649,6 +3649,7 @@ IgnorePointer(
 * [***GetX***](https://pub.dev/packages/get) 每个功能都位于单独的容器中，并且只有在使用后才启动
   * 如果仅使用状态管理，则仅编译状态管理
   * 如果仅使用路由，则不会编译任何来自状态管理的内容
+* 可以通过[***GetX***](https://pub.dev/packages/get)库中提供的**Get.key**或**Get.context**来获取当前上下文
 
 ### 安装
 
