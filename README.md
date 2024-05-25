@@ -458,7 +458,7 @@ Waiting for another flutter command to release the startup lock...
     * 在命令输入弹出框输入命令***Flutter: New Project*** 新建Dart.Flutter工程（自定义工程文件路径）。此时如果没有下载或者成功关联***Dart.Flutter.SDK***将会出现提示；
     * ***Dart.Flutter.SDK***  <font color="red">自带Dart语言环境</font>；但这个Dart版本可能和系统上安装的Dart版本不一致。
 
-## 利用FVM对项目Flutter的版本进行切换♻️
+## <font color=red>利用FVM对项目Flutter的版本进行切换♻️</font>
 
 ![image-20240520193213663](./assets/image-20240520193213663.png)
 
