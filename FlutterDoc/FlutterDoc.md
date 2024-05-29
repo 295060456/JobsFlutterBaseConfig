@@ -520,7 +520,43 @@ gcc -shared -o libexample.so example.c
   * 因为它可能会导致性能损失；
   * 并且使代码更难以理解和维护；
 * 很多编程语言都有反射的机制。比如：OC、Java
+## ***Dart.Flutter.timer***
+
+* ```dart
+  import 'dart:async';
+  
+  void main() {
+    print('Start of main');
+  
+    // 创建一个一次性定时器，3秒后触发关闭
+    Timer(Duration(seconds: 3), () {
+      timer.cancel();
+      print('This message is printed after a 3-second delay');
+    });
+  
+    print('End of main');
+  }
+  ```
+
+* ```
+  import 'dart:async';
+  
+  void main() {
+    print('Start of main');
+  
+    // 创建一个周期性定时器，每秒触发一次
+    Timer.periodic(Duration(seconds: 1), (Timer timer) {
+      print('This message is printed every second');
+    });
+  
+    print('End of main');
+  }
+  ```
+
+* 相当于把timer封装在一个函数里面，调用这个函数，即启动定时器。和iOS不同，iOS.Timer的启动方法在Timer类里面定义。
+
 ##  <font color="red">***Dart.mixin.with.on（混入）***</font>
+
 * <font color="red">*`Mixin`*</font>是一个广泛存在于各种编程语言中的概念，但在某些语言中可能会以不同的形式或名称出现；
 * <font color="red">*`Mixin`*</font>是Dart 2.1 加入的特性，以前版本通常使用*abstract class*代替；
 * 为了解决继承方面的问题而引入的机制，Dart为了支持多重继承；
@@ -1735,6 +1771,7 @@ class ChildWidget extends StatelessWidget {
   <font color="red">**综上所述，尽管在某些情况下将 *Widget* 和其关联的 *State* 写在同一个类中是可行的，但是将它们分开定义通常更利于代码的组织、可读性和维护性。**</font>
 ### 关于<font color="red">*`const`*</font> *MyApp({Key? key})* : <font color="red">*`super`*</font> *(key: key)*;
 
+* 最新的Api已经改为 <font color="red">*`const`*</font> **MyApp**({<font color="red">*`super`*</font> .**key**});
 * 是一个常量构造函数，用于创建一个名为*MyApp*的小部件，并将一个可选的`Key`作为参数传递给父类的构造函数；
 * 在某些情况下，可以省略<font color="red">*`const`*</font> ***MyApp({Key? key})*** : <font color="red">*`super`*</font> ***(key: key)***，具体取决于你的需求和代码结构。这取决于以下几个因素：
   * **默认行为：** 如果你的 *MyApp* 小部件不需要任何特殊的构造函数行为，并且不需要传递`key`参数给父类构造函数，那么你可以省略这个构造函数，因为Dart会提供一个默认构造函数；
@@ -3641,6 +3678,8 @@ IgnorePointer(
 
 [***Flutter状态管理GetX使用详解***](https://juejin.cn/post/7020598013986865182)
 
+[**状态-Getx**](https://www.cnblogs.com/cps666/p/17339373.html)
+
 ### 作用
 
 * 跨页面交互、路由管理、全局[***BuildContext***](#Context)、国际化，主题实现
@@ -3817,28 +3856,309 @@ class Demo1 extends StatelessWidget {
 ### <font id="GetxController">***GetxController***</font>
 
 * ***GetxController*** 是管理状态和逻辑的重要组件之一；
-* ***GetxController***通过提供响应式状态管理机制，可以完全取代*StatefulWidget*；
+
+* ***GetxController*** 是状态类；
+
+* ***GetxController***通过提供响应式状态管理机制，**可以完全取代*StatefulWidget***；
+
 * 分离状态逻辑与视图逻辑，***GetxController***提高了代码的可读性和可维护性；
+
 * ***GetxController*** 的生命周期：
-  * [**GetX**](#GetX).<font color="red">`put()` </font>：页面或应用初始化时创建。实例化类，使用对当下所有子路由可用（在整个应用程序的生命周期内保持存在）
+  
+  ![img](./assets/v2-7e9c8df7c38f8fd9c0ac5495ce1f134b_b.jpg)
+  
+  * [**GetxController**](#GetxController).<font color="red">`onInit()` </font>：执行初始化逻辑（例如获取数据、订阅流等）
+  * [**GetxController**](#GetxController).<font color="red">`onReady()` </font>：侦听状态的变化
+  * [**GetxController**](#GetxController).<font color="red">`onClose()` </font>：控制器相关的清理工作（比如取消订阅、关闭流、释放资源等），在控制器被销毁之前会自动调用
+  
+* ***GetxController*** 其他方法
+  
+  * [**GetxController**](#GetxController).<font color="red">`put()` </font>：页面或应用初始化时创建。实例化类，使用对当下所有子路由可用（在整个应用程序的生命周期内保持存在）
     * <font color="blue">在没有显式地调用 `Get.delete()` 方法将其销毁的大前提下，可以通过`Get.find()`找到对应的***GetxController***</font>
-    * `Get.delete()` 是 [**GetX**](#GetX) 中用于删除控制器实例的方法。它可以用于手动销毁控制器并释放资源，从而帮助管理应用程序的内存和性能。
-  * [**GetX**](#GetX).<font color="red">`onInit()` </font>：执行初始化逻辑（例如获取数据、订阅流等）
-  * [**GetX**](#GetX).<font color="red">`onReady()` </font>：侦听状态的变化
-  * [**GetX**](#GetX).<font color="red">`update()` </font>：UI更新
-  * [**GetX**](#GetX).<font color="red">`onClose()` </font>：控制器相关的清理工作（比如取消订阅、关闭流、释放资源等），在控制器被销毁之前会自动调用
-  * [**GetX**](#GetX).<font color="red">`dispose()` </font>：手动销毁控制器
-  * [**GetX**](#GetX).<font color="red">`onResumed()` </font>：当应用程序从后台返回前台时调用。通常在这个方法中可以执行一些恢复操作（比如：重新连接到后台服务、刷新数据等）
-  * [**GetX**](#GetX).<font color="red">`onPaused()` </font>：当应用程序从前台进入后台时调用。通常在这个方法中可以执行一些暂停操作（比如：暂停后台服务、保存数据等）
-  * [**GetX**](#GetX).<font color="red">`onInactive()` </font>：当应用程序失去焦点但没有完全进入后台时调用
-  * [**GetX**](#GetX).<font color="red">`onDetached()` </font>：当控制器从依赖注入系统中**移除**时调用，而不是销毁控制器本身
+    * `Get.delete()` 是 [**GetxController**](#GetxController) 中用于删除控制器实例的方法。它可以用于手动销毁控制器并释放资源，从而帮助管理应用程序的内存和性能。
+  * [**GetxController**](#GetxController).<font color="red">`update()` </font>：UI更新。用于`GetBuilder`手动更新UI
+  * [**GetxController**](#GetxController).<font color="red">`dispose()` </font>：手动销毁控制器
+  * [**GetxController**](#GetxController).<font color="red">`onResumed()` </font>：当应用程序从后台返回前台时调用。通常在这个方法中可以执行一些恢复操作（比如：重新连接到后台服务、刷新数据等）
+  * [**GetxController**](#GetxController).<font color="red">`onPaused()` </font>：当应用程序从前台进入后台时调用。通常在这个方法中可以执行一些暂停操作（比如：暂停后台服务、保存数据等）
+  * [**GetxController**](#GetxController).<font color="red">`onInactive()` </font>：当应用程序失去焦点但没有完全进入后台时调用
+  * [**GetxController**](#GetxController).<font color="red">`onDetached()` </font>：当控制器从依赖注入系统中**移除**时调用，而不是销毁控制器本身
+  
 * ***GetxController*** 提供了三种使用方式：
-  * `Obx`：响应式状态管理，当数据源变化时，将**自动**执行刷新组件的方法
+  
+  * `Obx`：响应式状态管理，当数据源变化时，将**自动**执行刷新组件的方法。双向的数据绑定
   * `GetX`：响应式状态管理，当数据源变化时，将**自动**执行刷新组件的方法
     <font color="red">***一般来说，对于大多数场景都是可以使用响应式变量。***</font>
   * `GetBuilder`：简单状态管理，当数据源变化时，需要**手动**执行刷新组件的方法，此状态管理器内部实际上是对*StatefulWidget*的封装，占用资源极少！
     <font color="red">***但是每个响应式变量`（.obs）`，都需要生成对应的GetStream，如果对象足够多，将生成大量的GetStream，必将对内存造成较大的压力。***</font>
     <font color="red">***该情况下，就要考虑使用简单状态管理了。***</font>
+  
+* `Obx` vs `GetBuilder`
+
+  * ```dsrt
+    import 'package:flutter/material.dart';
+    import 'package:get/get.dart';
+    
+    class CounterController extends GetxController {
+      var count = 0.obs;
+    
+      void increment() {
+        count++;
+      }
+    }
+    
+    void main() {
+      runApp(MyApp());
+    }
+    
+    class MyApp extends StatelessWidget {
+      @override
+      Widget build(BuildContext context) {
+        return GetMaterialApp(
+          home: HomePage(),
+        );
+      }
+    }
+    
+    class HomePage extends StatelessWidget {
+      @override
+      Widget build(BuildContext context) {
+        final CounterController counterController = Get.put(CounterController());
+    
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('Obx Example'),
+          ),
+          body: Center(
+            child: Obx(() {
+              return Text(
+                'Counter value: ${counterController.count}',
+                style: TextStyle(fontSize: 20),
+              );
+            }),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: counterController.increment,
+            child: Icon(Icons.add),
+          ),
+        );
+      }
+    }
+    ```
+
+    * **使用方式**：`Obx` 依赖于 Dart 的反应式编程，通过使用 `Rx` 类型变量来自动触发 UI 更新。
+    * **底层机制**：`Obx` 使用了 Dart 的反应式系统，通过监听 `Rx` 类型变量的变化来自动更新 UI。
+    * **性能**：适合需要频繁更新 UI 的场景，因为它依赖于反应式系统，可以自动更新相关的部分，而不需要手动调用更新方法。
+    * **使用场景**：适用于那些状态变化频率较高且希望自动处理 UI 更新的场景。
+
+  * ```dart
+    import 'package:flutter/material.dart';
+    import 'package:get/get.dart';
+    
+    class CounterController extends GetxController {
+      int count = 0;
+    
+      void increment() {
+        count++;
+        update(); // 手动调用 update() 来更新 UI
+      }
+    }
+    
+    void main() {
+      runApp(MyApp());
+    }
+    
+    class MyApp extends StatelessWidget {
+      @override
+      Widget build(BuildContext context) {
+        return GetMaterialApp(
+          home: HomePage(),
+        );
+      }
+    }
+    
+    class HomePage extends StatelessWidget {
+      @override
+      Widget build(BuildContext context) {
+        final CounterController counterController = Get.put(CounterController());
+    
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('GetBuilder Example'),
+          ),
+          body: Center(
+            child: GetBuilder<CounterController>(
+              builder: (controller) {
+                return Text(
+                  'Counter value: ${controller.count}',
+                  style: TextStyle(fontSize: 20),
+                );
+              },
+            ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: counterController.increment,
+            child: Icon(Icons.add),
+          ),
+        );
+      }
+    }
+    ```
+
+    * **使用方式**：`GetBuilder` 依赖于手动调用 `update()` 方法来触发 UI 更新。
+    * **底层机制**：`GetBuilder` 使用了 GetX 的内部状态管理机制来高效地重建 widget。它不依赖于 Dart 的反应式系统，而是通过手动调用 `update()` 来通知需要更新的部分。
+    * **性能**：适合不需要频繁更新 UI 的场景，因为手动调用 `update()` 可以避免不必要的重建。
+    * **使用场景**：适用于那些状态变化频率较低或希望手动控制状态更新的场景。
+
+* GetX.ever 和 GetX.everAll
+
+  * `ever` 用于监听单个 `Rx` 类型变量的变化。每当该变量发生变化时，都会执行指定的回调函数。
+
+  * `everAll` 用于监听多个 `Rx` 类型变量的变化。每当其中任意一个变量发生变化时，都会执行指定的回调函数。
+
+  ```dart
+  import 'package:flutter/material.dart';
+  import 'package:get/get.dart';
+  
+  class CounterController extends GetxController {
+    var count = 0.obs;
+  
+    @override
+    void onInit() {
+      super.onInit();
+      // 监听 count 变量的变化
+      ever(count, (value) {
+        print("Count has changed to $value");
+      });
+    }
+  
+    void increment() {
+      count++;
+    }
+  }
+  
+  void main() {
+    runApp(MyApp());
+  }
+  
+  class MyApp extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+      Get.put(CounterController());
+  
+      return GetMaterialApp(
+        home: HomePage(),
+      );
+    }
+  }
+  
+  class HomePage extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+      final CounterController counterController = Get.find<CounterController>();
+  
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('GetX ever Example'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Obx(() => Text(
+                'Counter value: ${counterController.count}',
+                style: TextStyle(fontSize: 20),
+              )),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: counterController.increment,
+                child: Text('Increment'),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+  }
+  ```
+
+  ```dart
+  import 'package:flutter/material.dart';
+  import 'package:get/get.dart';
+  
+  class MultiCounterController extends GetxController {
+    var count1 = 0.obs;
+    var count2 = 0.obs;
+  
+    @override
+    void onInit() {
+      super.onInit();
+      // 监听 count1 和 count2 变量的变化
+      everAll([count1, count2], (values) {
+        print("Count1 has changed to ${values[0]}, Count2 has changed to ${values[1]}");
+      });
+    }
+  
+    void incrementCount1() {
+      count1++;
+    }
+  
+    void incrementCount2() {
+      count2++;
+    }
+  }
+  
+  void main() {
+    runApp(MyApp());
+  }
+  
+  class MyApp extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+      Get.put(MultiCounterController());
+  
+      return GetMaterialApp(
+        home: HomePage(),
+      );
+    }
+  }
+  
+  class HomePage extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+      final MultiCounterController controller = Get.find<MultiCounterController>();
+  
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('GetX everAll Example'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Obx(() => Text(
+                'Count1 value: ${controller.count1}',
+                style: TextStyle(fontSize: 20),
+              )),
+              Obx(() => Text(
+                'Count2 value: ${controller.count2}',
+                style: TextStyle(fontSize: 20),
+              )),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: controller.incrementCount1,
+                child: Text('Increment Count1'),
+              ),
+              ElevatedButton(
+                onPressed: controller.incrementCount2,
+                child: Text('Increment Count2'),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+  }
+  ```
 
 ## ***Dart.Flutter.网络请求***
 
