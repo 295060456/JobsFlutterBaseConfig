@@ -435,8 +435,10 @@ Waiting for another flutter command to release the startup lock...
     
     • No issues found!
     ```
-  
-## ***Dart.Flutter.SDK*** ↔️[***VSCode***](https://code.visualstudio.com/)和↔️***MacOS*** ![image-20240320205645750](./assets/image-20240320205645750.png)
+
+## ***Dart.Flutter.SDK*** ↔️[***VSCode***](https://code.visualstudio.com/)和↔️***MacOS***
+
+![image-20240320205645750](./assets/image-20240320205645750.png)
 
   * 可以直接去[***Flutter官网***](https://flutter.dev/)或者[***Flutter.GitHub***](https://github.com/flutter/flutter)地址下载以后，和编译器进行关联；
   
@@ -1156,6 +1158,30 @@ Waiting for another flutter command to release the startup lock...
   * Android通常只涉及两个主要文件：`AndroidManifest.xml` 和 `build.gradle`
   
 * 其他：
+  
+  ***flutter precache --ios*** 是用于 Flutter 框架的命令，主要用于提前下载和缓存 iOS 平台所需的依赖项和工具
+  
+  * **下载 iOS 工具和依赖项**：确保你在开发 Flutter iOS 应用时所需的所有工具和资源都已经下载到本地。这包括 iOS 模拟器和设备所需的工具包。
+  
+  * **提高构建速度**：通过预先下载这些依赖项，可以减少在实际构建和调试应用时的等待时间，因为所有必要的资源已经提前准备好
+  
+    *ios/Podfile*
+  
+    ```ruby
+    platform :ios, '14.0'
+    
+    target 'Runner' do
+      use_frameworks!
+      use_modular_headers!
+    
+      flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+    
+      post_install do |installer|
+        installer.pods_project.targets.each do |target|
+          flutter_additional_ios_build_settings(target)
+        end
+      end
+    end
   
   ***flutter pub get --no-example*** 是Flutter 包管理器 **pub** 的命令。用于获取项目所需的依赖包，**但不包括示例代码**
   
