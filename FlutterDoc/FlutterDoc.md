@@ -144,6 +144,8 @@
   * <font color="red">***`final`***</font>可修饰实例变量、<font color="red">***`const`***</font>不可以修饰实例变量；
   * 访问类中<font color="red">***`const`***</font>修饰的变量需要<font color="red">***`static`***</font>修饰；
   ```dart
+  import 'package:flutter/material.dart';
+  
   class MyClass {
     // 如果要声明一个类中的静态变量，并且希望它是编译时常量，可以使用 static const：
     // 所以，这里的 static const 位置不能互换
@@ -163,6 +165,8 @@
   ```
   * <font color="red">***const***</font>修饰的List集合任意索引不可修改，<font color="red">***final***</font>修饰的可以修改；
   ```dart
+  import 'package:flutter/material.dart';
+  
   void main() {
     // 使用 const 修饰的 List，其中的元素是编译时常量，不可修改
     const List<int> constList = [1, 2, 3];
@@ -186,6 +190,8 @@
   *  <font color="red">***`final`***</font>**只可用来修饰变量**；
   * <font color="red">***`const`***</font>关键字即可修饰变量也可用来修饰常量构造函数；当<font color="red">***const***</font>修饰类的构造函数时，它要求该类的所有成员都必须是<font color="red">***final***</font>的；
    ```dart
+   import 'package:flutter/material.dart';
+   
    class MyClass {
      final int x;
      final int y;
@@ -250,6 +256,8 @@
 *根据传入的类型参数来创建不同的对象。*
 
 ```dart
+import 'package:flutter/material.dart';
+
 abstract class Animal {
   void makeSound();
 }
@@ -257,19 +265,19 @@ abstract class Animal {
 class Dog implements Animal {
   @override
   void makeSound() {
-    print('汪汪汪');
+    debugPrint('汪汪汪');
   }
 }
 
 class Cat implements Animal {
   @override
   void makeSound() {
-    print('喵喵喵');
+    debugPrint('喵喵喵');
   }
 }
 
 class AnimalFactory {
-  factory AnimalFactory(String type) {
+  static Animal createAnimal(String type) {
     switch (type) {
       case 'dog':
         return Dog();
@@ -282,10 +290,10 @@ class AnimalFactory {
 }
 
 void main() {
-  var dog = AnimalFactory('dog');
+  var dog = AnimalFactory.createAnimal('dog');
   dog.makeSound(); // 输出：汪汪汪
   
-  var cat = AnimalFactory('cat');
+  var cat = AnimalFactory.createAnimal('cat');
   cat.makeSound(); // 输出：喵喵喵
 }
 ```
