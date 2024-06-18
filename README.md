@@ -413,6 +413,12 @@ Waiting for another flutter command to release the startup lock...
   * 关于文件夹：`flutter/bin/cache`
     * 这个文件夹在[**Github.FlutterSDK**](https://github.com/flutter/flutter)里面是**不存在的**，而是需要根据实际的设备情况来进行灵活（自动）下载的；
     
+    * 一般是执行这条命令来进行下载预缓存 Flutter SDK所需的所有二进制文件
+    
+      ```shell
+      flutter precache
+      ```
+    
       ![image-20240522182606804](./assets/image-20240522182606804.png)
     
     * <font color=red>**即，[当前源](#Flutter源)是中国大陆 + 此时系统配置的`FLUTTER_STORAGE_BASE_URL`为Flutter官方源 ==> 此时依旧按照中国大陆源进行下载数据；**</font>
@@ -1289,6 +1295,12 @@ Waiting for another flutter command to release the startup lock...
   ***flutter doctor -v*** 
   
   * 不一定需要定位于📌于项目工程目录下才可以运行，因为整个MacOS都部署了Flutter环境。但是这个命令会唤起其他一些关于Flutter的细节命令，一但涉及到项目工程相关的配置，就进行不下去。<font color=red>**所以建议在项目工程根目录下运行此命令**</font>
+  * ***flutter doctor***  命令在执行过程中会下载一些必要的依赖和工具，这些下载的内容通常会被放置在 Flutter SDK 的 `bin/cache` 目录中。这个目录存储了各种工具和二进制文件，以确保 Flutter SDK 能够正常运行和编译你的应用程序。
+    * **Dart SDK**：存放在 `flutter/bin/cache/dart-sdk` 目录中；
+    * **Engine Binaries**：存放在 `flutter/bin/cache/artifacts/engine` 目录中；
+    * **Material Fonts**：存放在 `flutter/bin/cache/artifacts/material_fonts` 目录中；
+    * **Gradle Wrapper**：存放在 `flutter/bin/cache/artifacts/gradle_wrapper` 目录中；
+    * **Web SDK**：存放在 `flutter/bin/cache/flutter_web_sdk` 目录中；
   
   ***flutter precache***
   
