@@ -478,6 +478,12 @@ Waiting for another flutter command to release the startup lock...
   /Users/jobs/.pub-cache/bin/fvm
   ```
 
+* <font color=red>使用[**FVM**](https://fvm.app/)进行管理的项目，所链接的Flutter.SDK，其实在全局只有一份，只不过中间作为一个引用，链接在项目里面</font>
+
+  ![image-20240618155250515](./assets/image-20240618155250515.png)
+
+  ![image-20240618155427907](./assets/image-20240618155427907.png)
+  
 * 查看 Flutter.SDK 版本
 
   * 定位到Flutter.SDK根目录下的`bin`目录下的flutter可执行文件 ，执行参数`--version`
