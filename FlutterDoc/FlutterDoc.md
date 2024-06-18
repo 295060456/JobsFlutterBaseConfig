@@ -1014,6 +1014,11 @@ debugPrint(obj.x) // 输出: 10
 * ***StatefulWidget* 的 `createState` 是在*StatefulElement*的构建方法里创建的**。这就保证了只要*Element*不被重新创建，*State*就一直被复用；
 * [***`setState`***](#setState) ，其实是调用了 `markNeedsBuild` 。**`markNeedsBuild` 内部会标记 `element` 为 `diry`，然后在下一帧 `WidgetsBinding.drawFrame` 才会被绘制，这可以也看出**<font color="red">**`setState` 并不是立即生效的**</font>；
 * 要避免每次进入数据时都刷新`build`，可以使用`StatefulWidget`来保存状态，并在需要更新时手动调用[***`setState`***](#setState) 方法来触发更新。另外，还可以使用一些状态管理库（如[***Provider***](#Provider)、[***GetX***]( #GetX)、[***Bloc***](#BloC)等）来帮助管理状态，以便在需要时更新UI而不必刷新整个`build`。❤️
+* <font color=red>**项目里的应用**</font>：
+  * 一个应用模块下可能对应不止一个View，那么要求：一个State至少对应一个View。便于管理；
+  * 建议一个模块用一个State进行统一管理；
+  * View没有呈现（压栈）的时候，最好不要让其对应的State先进栈（不要先数据后UI）。因为State层有自己的生命周期，如果先进栈，就不会走他自己的一些只走一次的生命周期方法，导致业务出问题；
+  * 目前一般在用GetX这个框架进行全局的状态管理。如果没有注册某控制器（数据层），而直接找。会造成崩溃
 ```dart
 import 'package:flutter/material.dart';
 
