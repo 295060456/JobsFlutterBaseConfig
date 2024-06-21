@@ -936,10 +936,16 @@ Waiting for another flutter command to release the startup lock...
     flutter run -t lib/main.dart
     ```
     
+  * <font color=red>**手动运行指定的文件**</font> `lib/Data/Data.Origin/调用C` 文件夹下的**a.dart**
+
+    ```shell
+    flutter run --target=lib/Data/Data.Origin/调用C/a.dart --debug
+    ```
+  
   * <font color=red id="runByDeviceID">**手动运行（项目工程）到指定设备**</font>
-
+  
   *结合`flutter devices`查找出当前连接的所有设备（拿到设备id），再指定运行到此id关联的指定设备*
-
+  
     ```shell
     ➜  JobsFlutterBaseConfigDemo git:(main) flutter devices
     Found 3 connected devices:
