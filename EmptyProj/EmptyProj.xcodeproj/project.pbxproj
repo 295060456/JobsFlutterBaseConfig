@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29BDF0401A44E046C445440D /* Pods_EmptyProj.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9445A01E57ABB89EC751354E /* Pods_EmptyProj.framework */; };
+		2C5CD4FF4B55B0B841F40224 /* Pods_EmptyProjTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A7031B04E5C6762D9801CC /* Pods_EmptyProjTests.framework */; };
+		AAEB836D9E9BB80778BB9489 /* Pods_EmptyProjUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488D23FE91605129D3DDD661 /* Pods_EmptyProjUITests.framework */; };
 		C5CAACD22BE4C90B000795E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C5CAACD12BE4C90B000795E2 /* AppDelegate.m */; };
 		C5CAACD52BE4C90B000795E2 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C5CAACD42BE4C90B000795E2 /* SceneDelegate.m */; };
 		C5CAACD82BE4C90B000795E2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5CAACD72BE4C90B000795E2 /* ViewController.m */; };
@@ -17,6 +20,21 @@
 		C5CAACED2BE4C90E000795E2 /* EmptyProjTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C5CAACEC2BE4C90E000795E2 /* EmptyProjTests.m */; };
 		C5CAACF72BE4C90E000795E2 /* EmptyProjUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C5CAACF62BE4C90E000795E2 /* EmptyProjUITests.m */; };
 		C5CAACF92BE4C90E000795E2 /* EmptyProjUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C5CAACF82BE4C90E000795E2 /* EmptyProjUITestsLaunchTests.m */; };
+		CE8621A02C2EA6510009C664 /* libarclite_appletvos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8621892C2EA6510009C664 /* libarclite_appletvos.a */; };
+		CE8621A12C2EA6510009C664 /* libarclite_appletvsimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE86218A2C2EA6510009C664 /* libarclite_appletvsimulator.a */; };
+		CE8621A22C2EA6510009C664 /* libarclite_iphoneos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE86218B2C2EA6510009C664 /* libarclite_iphoneos.a */; };
+		CE8621A32C2EA6510009C664 /* libarclite_iphonesimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE86218C2C2EA6510009C664 /* libarclite_iphonesimulator.a */; };
+		CE8621A42C2EA6510009C664 /* libarclite_macosx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE86218D2C2EA6510009C664 /* libarclite_macosx.a */; };
+		CE8621A52C2EA6510009C664 /* libarclite_watchos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE86218E2C2EA6510009C664 /* libarclite_watchos.a */; };
+		CE8621A62C2EA6510009C664 /* libarclite_watchsimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE86218F2C2EA6510009C664 /* libarclite_watchsimulator.a */; };
+		CE8621A92C2EA6510009C664 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8621942C2EA6510009C664 /* libstdc++.6.0.9.tbd */; };
+		CE8621AA2C2EA6510009C664 /* libstdc++.6.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8621952C2EA6510009C664 /* libstdc++.6.tbd */; };
+		CE8621AB2C2EA6510009C664 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8621972C2EA6510009C664 /* libstdc++.6.0.9.dylib */; };
+		CE8621AC2C2EA6510009C664 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8621982C2EA6510009C664 /* libstdc++.6.0.9.tbd */; };
+		CE8621AD2C2EA6510009C664 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8621992C2EA6510009C664 /* libstdc++.6.dylib */; };
+		CE8621AE2C2EA6510009C664 /* libstdc++.6.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CE86219A2C2EA6510009C664 /* libstdc++.6.tbd */; };
+		CE8621AF2C2EA6510009C664 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE86219B2C2EA6510009C664 /* libstdc++.dylib */; };
+		CE8621B02C2EA6510009C664 /* libstdc++.md in Resources */ = {isa = PBXBuildFile; fileRef = CE86219D2C2EA6510009C664 /* libstdc++.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +55,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		06A5F34CF4AFDC13243D1EEC /* Pods-EmptyProjUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmptyProjUITests.release.xcconfig"; path = "Target Support Files/Pods-EmptyProjUITests/Pods-EmptyProjUITests.release.xcconfig"; sourceTree = "<group>"; };
+		488D23FE91605129D3DDD661 /* Pods_EmptyProjUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmptyProjUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E169438844C0BD596BE7C67 /* Pods-EmptyProj.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmptyProj.debug.xcconfig"; path = "Target Support Files/Pods-EmptyProj/Pods-EmptyProj.debug.xcconfig"; sourceTree = "<group>"; };
+		574259BDF8EDE822E1A2DF14 /* Pods-EmptyProj.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmptyProj.release.xcconfig"; path = "Target Support Files/Pods-EmptyProj/Pods-EmptyProj.release.xcconfig"; sourceTree = "<group>"; };
+		6C9197981351118B38097607 /* Pods-EmptyProjTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmptyProjTests.release.xcconfig"; path = "Target Support Files/Pods-EmptyProjTests/Pods-EmptyProjTests.release.xcconfig"; sourceTree = "<group>"; };
+		9445A01E57ABB89EC751354E /* Pods_EmptyProj.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmptyProj.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		951E1475FE9D8B0CDD151F7D /* Pods-EmptyProjUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmptyProjUITests.debug.xcconfig"; path = "Target Support Files/Pods-EmptyProjUITests/Pods-EmptyProjUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C5CAACCD2BE4C90B000795E2 /* EmptyProj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmptyProj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5CAACD02BE4C90B000795E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C5CAACD12BE4C90B000795E2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -54,6 +79,27 @@
 		C5CAACF22BE4C90E000795E2 /* EmptyProjUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmptyProjUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5CAACF62BE4C90E000795E2 /* EmptyProjUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyProjUITests.m; sourceTree = "<group>"; };
 		C5CAACF82BE4C90E000795E2 /* EmptyProjUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyProjUITestsLaunchTests.m; sourceTree = "<group>"; };
+		CE8621892C2EA6510009C664 /* libarclite_appletvos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libarclite_appletvos.a; sourceTree = "<group>"; };
+		CE86218A2C2EA6510009C664 /* libarclite_appletvsimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libarclite_appletvsimulator.a; sourceTree = "<group>"; };
+		CE86218B2C2EA6510009C664 /* libarclite_iphoneos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libarclite_iphoneos.a; sourceTree = "<group>"; };
+		CE86218C2C2EA6510009C664 /* libarclite_iphonesimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libarclite_iphonesimulator.a; sourceTree = "<group>"; };
+		CE86218D2C2EA6510009C664 /* libarclite_macosx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libarclite_macosx.a; sourceTree = "<group>"; };
+		CE86218E2C2EA6510009C664 /* libarclite_watchos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libarclite_watchos.a; sourceTree = "<group>"; };
+		CE86218F2C2EA6510009C664 /* libarclite_watchsimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libarclite_watchsimulator.a; sourceTree = "<group>"; };
+		CE8621902C2EA6510009C664 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CE8621922C2EA6510009C664 /* image-20240430112026271.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-20240430112026271.png"; sourceTree = "<group>"; };
+		CE8621942C2EA6510009C664 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = "libstdc++.6.0.9.tbd"; sourceTree = "<group>"; };
+		CE8621952C2EA6510009C664 /* libstdc++.6.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = "libstdc++.6.tbd"; sourceTree = "<group>"; };
+		CE8621972C2EA6510009C664 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libstdc++.6.0.9.dylib"; sourceTree = "<group>"; };
+		CE8621982C2EA6510009C664 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = "libstdc++.6.0.9.tbd"; sourceTree = "<group>"; };
+		CE8621992C2EA6510009C664 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libstdc++.6.dylib"; sourceTree = "<group>"; };
+		CE86219A2C2EA6510009C664 /* libstdc++.6.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = "libstdc++.6.tbd"; sourceTree = "<group>"; };
+		CE86219B2C2EA6510009C664 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libstdc++.dylib"; sourceTree = "<group>"; };
+		CE86219D2C2EA6510009C664 /* libstdc++.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "libstdc++.md"; sourceTree = "<group>"; };
+		D22FBCA3FE34297EEA8C71D3 /* Pods-EmptyProjTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmptyProjTests.debug.xcconfig"; path = "Target Support Files/Pods-EmptyProjTests/Pods-EmptyProjTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EC97749E66A88E24A01A444A /* Pods-EmptyProj-EmptyProjUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmptyProj-EmptyProjUITests.release.xcconfig"; path = "Target Support Files/Pods-EmptyProj-EmptyProjUITests/Pods-EmptyProj-EmptyProjUITests.release.xcconfig"; sourceTree = "<group>"; };
+		EE94D4931E87C1FEF9A9A9D1 /* Pods-EmptyProj-EmptyProjUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmptyProj-EmptyProjUITests.debug.xcconfig"; path = "Target Support Files/Pods-EmptyProj-EmptyProjUITests/Pods-EmptyProj-EmptyProjUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F1A7031B04E5C6762D9801CC /* Pods_EmptyProjTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmptyProjTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +107,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE8621AF2C2EA6510009C664 /* libstdc++.dylib in Frameworks */,
+				CE8621A52C2EA6510009C664 /* libarclite_watchos.a in Frameworks */,
+				CE8621A32C2EA6510009C664 /* libarclite_iphonesimulator.a in Frameworks */,
+				CE8621A12C2EA6510009C664 /* libarclite_appletvsimulator.a in Frameworks */,
+				CE8621A62C2EA6510009C664 /* libarclite_watchsimulator.a in Frameworks */,
+				CE8621A42C2EA6510009C664 /* libarclite_macosx.a in Frameworks */,
+				CE8621A22C2EA6510009C664 /* libarclite_iphoneos.a in Frameworks */,
+				CE8621AD2C2EA6510009C664 /* libstdc++.6.dylib in Frameworks */,
+				CE8621A02C2EA6510009C664 /* libarclite_appletvos.a in Frameworks */,
+				CE8621A92C2EA6510009C664 /* libstdc++.6.0.9.tbd in Frameworks */,
+				CE8621AE2C2EA6510009C664 /* libstdc++.6.tbd in Frameworks */,
+				CE8621AC2C2EA6510009C664 /* libstdc++.6.0.9.tbd in Frameworks */,
+				CE8621AA2C2EA6510009C664 /* libstdc++.6.tbd in Frameworks */,
+				CE8621AB2C2EA6510009C664 /* libstdc++.6.0.9.dylib in Frameworks */,
+				29BDF0401A44E046C445440D /* Pods_EmptyProj.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C5CD4FF4B55B0B841F40224 /* Pods_EmptyProjTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,19 +137,48 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAEB836D9E9BB80778BB9489 /* Pods_EmptyProjUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D91C719A68454703E28C8E5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9445A01E57ABB89EC751354E /* Pods_EmptyProj.framework */,
+				F1A7031B04E5C6762D9801CC /* Pods_EmptyProjTests.framework */,
+				488D23FE91605129D3DDD661 /* Pods_EmptyProjUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4F5865FB2F0FF4ABED2D28DE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4E169438844C0BD596BE7C67 /* Pods-EmptyProj.debug.xcconfig */,
+				574259BDF8EDE822E1A2DF14 /* Pods-EmptyProj.release.xcconfig */,
+				EE94D4931E87C1FEF9A9A9D1 /* Pods-EmptyProj-EmptyProjUITests.debug.xcconfig */,
+				EC97749E66A88E24A01A444A /* Pods-EmptyProj-EmptyProjUITests.release.xcconfig */,
+				D22FBCA3FE34297EEA8C71D3 /* Pods-EmptyProjTests.debug.xcconfig */,
+				6C9197981351118B38097607 /* Pods-EmptyProjTests.release.xcconfig */,
+				951E1475FE9D8B0CDD151F7D /* Pods-EmptyProjUITests.debug.xcconfig */,
+				06A5F34CF4AFDC13243D1EEC /* Pods-EmptyProjUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		C5CAACC42BE4C90B000795E2 = {
 			isa = PBXGroup;
 			children = (
+				CE86219F2C2EA6510009C664 /* Sys.lib */,
 				C5CAACCF2BE4C90B000795E2 /* EmptyProj */,
 				C5CAACEB2BE4C90E000795E2 /* EmptyProjTests */,
 				C5CAACF52BE4C90E000795E2 /* EmptyProjUITests */,
 				C5CAACCE2BE4C90B000795E2 /* Products */,
+				4F5865FB2F0FF4ABED2D28DE /* Pods */,
+				2D91C719A68454703E28C8E5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,6 +227,70 @@
 			path = EmptyProjUITests;
 			sourceTree = "<group>";
 		};
+		CE8621912C2EA6510009C664 /* Libarclite */ = {
+			isa = PBXGroup;
+			children = (
+				CE8621892C2EA6510009C664 /* libarclite_appletvos.a */,
+				CE86218A2C2EA6510009C664 /* libarclite_appletvsimulator.a */,
+				CE86218B2C2EA6510009C664 /* libarclite_iphoneos.a */,
+				CE86218C2C2EA6510009C664 /* libarclite_iphonesimulator.a */,
+				CE86218D2C2EA6510009C664 /* libarclite_macosx.a */,
+				CE86218E2C2EA6510009C664 /* libarclite_watchos.a */,
+				CE86218F2C2EA6510009C664 /* libarclite_watchsimulator.a */,
+				CE8621902C2EA6510009C664 /* README.md */,
+			);
+			path = Libarclite;
+			sourceTree = "<group>";
+		};
+		CE8621932C2EA6510009C664 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				CE8621922C2EA6510009C664 /* image-20240430112026271.png */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		CE8621962C2EA6510009C664 /* iPhone-Device */ = {
+			isa = PBXGroup;
+			children = (
+				CE8621942C2EA6510009C664 /* libstdc++.6.0.9.tbd */,
+				CE8621952C2EA6510009C664 /* libstdc++.6.tbd */,
+			);
+			path = "iPhone-Device";
+			sourceTree = "<group>";
+		};
+		CE86219C2C2EA6510009C664 /* iPhone-Simulator */ = {
+			isa = PBXGroup;
+			children = (
+				CE8621972C2EA6510009C664 /* libstdc++.6.0.9.dylib */,
+				CE8621982C2EA6510009C664 /* libstdc++.6.0.9.tbd */,
+				CE8621992C2EA6510009C664 /* libstdc++.6.dylib */,
+				CE86219A2C2EA6510009C664 /* libstdc++.6.tbd */,
+				CE86219B2C2EA6510009C664 /* libstdc++.dylib */,
+			);
+			path = "iPhone-Simulator";
+			sourceTree = "<group>";
+		};
+		CE86219E2C2EA6510009C664 /* libstdc++ */ = {
+			isa = PBXGroup;
+			children = (
+				CE8621932C2EA6510009C664 /* assets */,
+				CE8621962C2EA6510009C664 /* iPhone-Device */,
+				CE86219C2C2EA6510009C664 /* iPhone-Simulator */,
+				CE86219D2C2EA6510009C664 /* libstdc++.md */,
+			);
+			path = "libstdc++";
+			sourceTree = "<group>";
+		};
+		CE86219F2C2EA6510009C664 /* Sys.lib */ = {
+			isa = PBXGroup;
+			children = (
+				CE8621912C2EA6510009C664 /* Libarclite */,
+				CE86219E2C2EA6510009C664 /* libstdc++ */,
+			);
+			path = Sys.lib;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,9 +298,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C5CAACFC2BE4C90E000795E2 /* Build configuration list for PBXNativeTarget "EmptyProj" */;
 			buildPhases = (
+				2A16ADE71EC88DBB309C8043 /* [CP] Check Pods Manifest.lock */,
 				C5CAACC92BE4C90B000795E2 /* Sources */,
 				C5CAACCA2BE4C90B000795E2 /* Frameworks */,
 				C5CAACCB2BE4C90B000795E2 /* Resources */,
+				0414B1D60855D2B1349C5E9B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -160,6 +317,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C5CAACFF2BE4C90E000795E2 /* Build configuration list for PBXNativeTarget "EmptyProjTests" */;
 			buildPhases = (
+				6DC695AD14EF29A623A6C25A /* [CP] Check Pods Manifest.lock */,
 				C5CAACE42BE4C90E000795E2 /* Sources */,
 				C5CAACE52BE4C90E000795E2 /* Frameworks */,
 				C5CAACE62BE4C90E000795E2 /* Resources */,
@@ -178,6 +336,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C5CAAD022BE4C90E000795E2 /* Build configuration list for PBXNativeTarget "EmptyProjUITests" */;
 			buildPhases = (
+				0421D9D4692A339C8DAD8D10 /* [CP] Check Pods Manifest.lock */,
 				C5CAACEE2BE4C90E000795E2 /* Sources */,
 				C5CAACEF2BE4C90E000795E2 /* Frameworks */,
 				C5CAACF02BE4C90E000795E2 /* Resources */,
@@ -239,6 +398,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE8621B02C2EA6510009C664 /* libstdc++.md in Resources */,
 				C5CAACDD2BE4C90E000795E2 /* Assets.xcassets in Resources */,
 				C5CAACE02BE4C90E000795E2 /* Base in Resources */,
 				C5CAACDB2BE4C90B000795E2 /* Base in Resources */,
@@ -260,6 +420,90 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0414B1D60855D2B1349C5E9B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EmptyProj/Pods-EmptyProj-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0421D9D4692A339C8DAD8D10 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EmptyProjUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2A16ADE71EC88DBB309C8043 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EmptyProj-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6DC695AD14EF29A623A6C25A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EmptyProjTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C5CAACC92BE4C90B000795E2 /* Sources */ = {
@@ -443,11 +687,14 @@
 		};
 		C5CAACFD2BE4C90E000795E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E169438844C0BD596BE7C67 /* Pods-EmptyProj.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EmptyProj/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -458,6 +705,12 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Sys.lib/Libarclite",
+					"$(PROJECT_DIR)/Sys.lib/libstdc++/iPhone-Device",
+					"$(PROJECT_DIR)/Sys.lib/libstdc++/iPhone-Simulator",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jobs.EmptyProj;
@@ -469,11 +722,14 @@
 		};
 		C5CAACFE2BE4C90E000795E2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 574259BDF8EDE822E1A2DF14 /* Pods-EmptyProj.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EmptyProj/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -485,6 +741,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Sys.lib/Libarclite",
+					"$(PROJECT_DIR)/Sys.lib/libstdc++/iPhone-Device",
+					"$(PROJECT_DIR)/Sys.lib/libstdc++/iPhone-Simulator",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jobs.EmptyProj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -495,6 +757,7 @@
 		};
 		C5CAAD002BE4C90E000795E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D22FBCA3FE34297EEA8C71D3 /* Pods-EmptyProjTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -512,6 +775,7 @@
 		};
 		C5CAAD012BE4C90E000795E2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6C9197981351118B38097607 /* Pods-EmptyProjTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -529,6 +793,7 @@
 		};
 		C5CAAD032BE4C90E000795E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 951E1475FE9D8B0CDD151F7D /* Pods-EmptyProjUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -544,6 +809,7 @@
 		};
 		C5CAAD042BE4C90E000795E2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06A5F34CF4AFDC13243D1EEC /* Pods-EmptyProjUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
