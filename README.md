@@ -1,13 +1,13 @@
-# jobs_flutter_base_config
+# Flutter 项目的配置
 
-- [jobs\_flutter\_base\_config](#jobs_flutter_base_config)
+- [Flutter 项目的配置](#Flutter 项目的配置)
   - [**前言**](#前言)
   - [Android Studio](#android-studio)
   - [JavaSDK For Android in MacOS](#javasdk-for-android-in-macos)
   - [Gradle For Android in MacOS](#gradle-for-android-in-macos)
   - [配置文件](#配置文件)
   - [关于xcode.iOS模拟器](#关于xcodeios模拟器)
-  - [关联运行设备](#关联运行设备)
+  - [❤️关联运行设备❤️](#关联运行设备)
   - [***运行Dart.Flutter工程***](#运行dartflutter工程)
   - [调试工具](#调试工具)
     - [***Dart.Flutter.DevTools***](#dartflutterdevtools)
@@ -155,7 +155,7 @@ Waiting for another flutter command to release the startup lock...
 
   * 安装制定版本的[**JavaSDK**](https://www.openlogic.com/openjdk-downloads?field_java_parent_version_target_id=416&field_operating_system_target_id=431&field_architecture_target_id=391&field_java_package_target_id=All) 
 
-    * ```shell
+      ```zsh
       #! /bin/zsh
       
       # 安装 SDKMAN
@@ -178,7 +178,7 @@ Waiting for another flutter command to release the startup lock...
       java -version
       ```
 
-      ```shell
+      ```zsh
       #! /bin/zsh
       
       # 随时切换 Java 版本
@@ -196,7 +196,7 @@ Waiting for another flutter command to release the startup lock...
       OpenJDK 64-Bit Server VM Temurin-21.0.3+9 (build 21.0.3+9-LTS, mixed mode)
       ```
 
-    * [**配置环境变量**](#MacOS.配置文件)
+  * [**配置环境变量**](#MacOS.配置文件)
 
       ```ruby
       export SDKMAN_DIR="$HOME/.sdkman"
@@ -205,17 +205,24 @@ Waiting for another flutter command to release the startup lock...
 
 ## Gradle For Android in MacOS
 
-* [**Gradle**](https://gradle.org/releases/)， 是一个开源的自动化构建工具，用于构建和管理软件项目。它具有灵活、强大和高度可定制的特性，被广泛用于构建 Java、Groovy、Kotlin、C/C++、Swift、JavaScript和其他 JVM 相关的项目，包括 Android 应用程序。
+* [**Gradle**](https://gradle.org/releases/)， 是一个开源的自动化构建工具，用于构建和管理软件项目。它具有灵活、强大和高度可定制的特性，被广泛用于构建 Java、Groovy、Kotlin、C/C++、Swift、JavaScript和其他 JVM 相关的项目，包括 Android 应用程序
 
-* ```ruby
-  # 配置 Gradle 环境变量
+* 配置 Gradle 环境变量
+  
+  ```shell
+  open "$HOME/.bash_profile"
+  open "$HOME/.bashrc"
+  open "$HOME/.zshrc"
+  ```
+  
+  ```ruby
   export PATH="/Users/$(whoami)/Documents/Gradle/gradle-8.7/bin:$PATH"
   ```
-
+  
   ![image-20240522182407986](./assets/image-20240522182407986.png)
-
+  
   * `$PATH`的意思：能够保留原有的 `PATH` 设置，并将新路径添加到原有的 `PATH`前面
-
+  
 * 验证
 
   ```shell
@@ -333,20 +340,19 @@ Waiting for another flutter command to release the startup lock...
 
 * <font color=red id="MacOS.配置文件">**系统一般就下面👇这三个文件进行配置引导**</font>
 
-  ```sh
+  ```shell
   #! /bin/zsh
   open ~/.bash_profile
-  
   open ~/.bashrc
   open ~/.zshrc
   ```
-
+  
   - **对于 Bash：**
     - 登录 shell：先执行 `~/.bash_profile`，如果在 `~/.bash_profile` 中有 `source ~/.bashrc`，则会接着执行 `~/.bashrc`
     - 非登录 shell：只执行 `~/.bashrc`
   - **对于 Zsh：**
     - 无论是登录 shell 还是非登录 shell，都只执行 `~/.zshrc`
-
+  
 * [配置 <font color=red id=".bash_profile">*`.bash_profile`*</font> 文件](https://github.com/295060456/JobsGenesis/tree/main/%E3%80%90MacOS%E3%80%91Shell.all/command/%E3%80%90MacOS%E3%80%91Sys.commnd/%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
 
     ```ruby
@@ -824,6 +830,13 @@ Waiting for another flutter command to release the startup lock...
 
 * [**关联运行设备**](# 关联运行设备)
 
+* xcode 的配置
+
+  ```shell
+  sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+  sudo xcodebuild -runFirstLaunch
+  ```
+
 * *Mac终端命令行启动*
 
   ```shell
@@ -844,7 +857,7 @@ Waiting for another flutter command to release the startup lock...
 
 * 对xcode关联的相关设备进行删除以后，在Flutter编译器（比如[***VSCode***](https://code.visualstudio.com/) ）里面，可能是没有同步的，还保存着上一个已经移除或者销毁的iOS模拟器指向（这个时候是无法成功唤起iOS模拟器的）。在选择编译器的时候，请注意检查模拟器的ID是否能够对得上；
 
-## <font id="关联运行设备">关联运行设备</font>
+## <font id="关联运行设备">❤️关联运行设备❤️</font>
 
   * iOS模拟器：[***Xcode下载模拟器报错***](https://blog.csdn.net/saw471/article/details/136560974)
 
