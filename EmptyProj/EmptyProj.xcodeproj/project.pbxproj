@@ -35,6 +35,7 @@
 		CE8621AE2C2EA6510009C664 /* libstdc++.6.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CE86219A2C2EA6510009C664 /* libstdc++.6.tbd */; };
 		CE8621AF2C2EA6510009C664 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE86219B2C2EA6510009C664 /* libstdc++.dylib */; };
 		CE8621B02C2EA6510009C664 /* libstdc++.md in Resources */ = {isa = PBXBuildFile; fileRef = CE86219D2C2EA6510009C664 /* libstdc++.md */; };
+		CEAAD4532C3270E100349C11 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEAAD4512C3270E100349C11 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,9 @@
 		CE86219A2C2EA6510009C664 /* libstdc++.6.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = "libstdc++.6.tbd"; sourceTree = "<group>"; };
 		CE86219B2C2EA6510009C664 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libstdc++.dylib"; sourceTree = "<group>"; };
 		CE86219D2C2EA6510009C664 /* libstdc++.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "libstdc++.md"; sourceTree = "<group>"; };
+		CEAAD44F2C3270AF00349C11 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		CEAAD4502C3270AF00349C11 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		CEAAD4522C3270E100349C11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D22FBCA3FE34297EEA8C71D3 /* Pods-EmptyProjTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmptyProjTests.debug.xcconfig"; path = "Target Support Files/Pods-EmptyProjTests/Pods-EmptyProjTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EC97749E66A88E24A01A444A /* Pods-EmptyProj-EmptyProjUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmptyProj-EmptyProjUITests.release.xcconfig"; path = "Target Support Files/Pods-EmptyProj-EmptyProjUITests/Pods-EmptyProj-EmptyProjUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EE94D4931E87C1FEF9A9A9D1 /* Pods-EmptyProj-EmptyProjUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmptyProj-EmptyProjUITests.debug.xcconfig"; path = "Target Support Files/Pods-EmptyProj-EmptyProjUITests/Pods-EmptyProj-EmptyProjUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 				C5CAACDC2BE4C90E000795E2 /* Assets.xcassets */,
 				C5CAACDE2BE4C90E000795E2 /* LaunchScreen.storyboard */,
 				C5CAACE12BE4C90E000795E2 /* Info.plist */,
+				CEAAD4512C3270E100349C11 /* InfoPlist.strings */,
 				C5CAACE22BE4C90E000795E2 /* main.m */,
 			);
 			path = EmptyProj;
@@ -380,6 +385,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = C5CAACC42BE4C90B000795E2;
 			productRefGroup = C5CAACCE2BE4C90B000795E2 /* Products */;
@@ -402,6 +408,7 @@
 				C5CAACDD2BE4C90E000795E2 /* Assets.xcassets in Resources */,
 				C5CAACE02BE4C90E000795E2 /* Base in Resources */,
 				C5CAACDB2BE4C90B000795E2 /* Base in Resources */,
+				CEAAD4532C3270E100349C11 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,6 +561,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				C5CAACDA2BE4C90B000795E2 /* Base */,
+				CEAAD44F2C3270AF00349C11 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -562,8 +570,17 @@
 			isa = PBXVariantGroup;
 			children = (
 				C5CAACDF2BE4C90E000795E2 /* Base */,
+				CEAAD4502C3270AF00349C11 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		CEAAD4512C3270E100349C11 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEAAD4522C3270E100349C11 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -574,6 +591,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -635,6 +653,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
